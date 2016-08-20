@@ -1,5 +1,5 @@
 # The whole project consists of three parts:
-1) the computation of the five vector representations (word embeddings) and the evaluation of the models
+* 1) the computation of the five vector representations (word embeddings) and the evaluation of the models
 2) the aggregation of model on the term evaluation task
 3) the aggregation of model on the word similarity task
 

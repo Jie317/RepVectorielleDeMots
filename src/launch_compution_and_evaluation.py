@@ -119,7 +119,6 @@ if sys.argv[2] != '00' and sys.argv[2][-1] != '/':
 	if sys.argv[2] == "1" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 1 CBOW >>>>>>>>>>>>>\n"
 		embeddings_dir_cbow = embeddings_dir+"cbow/"
-		if not os.path.exists(embeddings_dir_cbow): os.makedirs(embeddings_dir_cbow)
 	
 		logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 		sentences = Sentences_flow(corpus_path)
@@ -138,7 +137,7 @@ if sys.argv[2] != '00' and sys.argv[2][-1] != '/':
 	if sys.argv[2] == "2" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 2 GloVe >>>>>>>>>>>>>\n"
 		embeddings_dir_glove = embeddings_dir+"glove/"
-		if not os.path.exists(embeddings_dir_glove): os.makedirs(embeddings_dir_glove)
+		if not os.path.exists(embeddings_dir_glove): os.makedirs('../metadata/glove/')
 		CORPUS= " < "+corpus_path+" >"
 		VOCAB_FILE = "../metadata/glove/glove_size_50.embeddings.vocc"
 		VOCAB_FILE_refined = embeddings_dir_glove+"glove_size_50.embeddings.voc"
@@ -188,7 +187,7 @@ if sys.argv[2] != '00' and sys.argv[2][-1] != '/':
 	if sys.argv[2] == "3" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 3 HPCA >>>>>>>>>>>>>\n"
 		embeddings_dir_hpca = embeddings_dir+"hpca/"
-		if not os.path.exists(embeddings_dir_hpca): os.makedirs(embeddings_dir_hpca)
+		if not os.path.exists(embeddings_dir_hpca): os.makedirs('../metadata/hpca/')
 		HPCA_VOC_Path = " -vocab-file ../metadata/hpca/hpca_general.voc"
 		VERBOSE_hpca = " -verbose 1"
 		EMB_path = "../metadata/hpca/hpca_size_50.embeddings.vecc"
@@ -232,7 +231,7 @@ if sys.argv[2] != '00' and sys.argv[2][-1] != '/':
 	if sys.argv[2] == "4" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 4 Sparse Random Projection >>>>>>>>>>>>>\n"
 		embeddings_dir_random_projection = embeddings_dir+"random_projection/"
-		if not os.path.exists(embeddings_dir_random_projection): os.makedirs(embeddings_dir_random_projection)
+		if not os.path.exists(embeddings_dir_random_projection): os.makedirs('../metadata/random_projection/')
 		# Load the co-occurrence matrix
 		transformer = random_projection.SparseRandomProjection(n_components=50, density='auto', eps=0.1, dense_output=False, random_state=None)# n_components is the dimension of the reduced matrix
 		with open('../metadata/hpca/cooccurrence_matrix.txt','r') as mat,  open("../metadata/random_projection/embeddings.vecc",'w+') as output_vec_chunk:
@@ -271,7 +270,7 @@ if sys.argv[2] != '00' and sys.argv[2][-1] != '/':
 	if sys.argv[2] == "5" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 5 TSCCA >>>>>>>>>>>>>\n"
 		embeddings_dir_tscca = embeddings_dir+"tscca/"
-		if not os.path.exists(embeddings_dir_tscca): os.makedirs(embeddings_dir_tscca)
+		if not os.path.exists(embeddings_dir_tscca): os.makedirs('../metadata/tscca/')
 	
 		tscca_emb_path = embeddings_dir_tscca+'tscca_size_50.embeddings.vec'
 		cmd_tscca = 'ant -Dcorpus_path='+corpus_path+' CCAVariantsTSCCA '

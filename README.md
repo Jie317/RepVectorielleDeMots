@@ -4,9 +4,9 @@
 * 3) the aggregation of model on the word similarity task
 
 
-##To install the whole project and reproduce all the results, please follow the 4 steps below:
+## To install the whole project and reproduce all the results, please follow the 4 steps below:
 
-###Please note that:
+### Please note that:
 * all the scripts mentioned below are in the folder "src".
 * all the scripts should be run under the directory of the folder "src". 
 * whenever giving a directory as an argument, please try to use relative directory and end it with a slash "/", such as "../input_corpora/corpora/".

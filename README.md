@@ -7,10 +7,10 @@
 ##To install the whole project and reproduce all the results, please follow the 4 steps below:
 
 ###Please note that:
-* all the scripts mentioned below are in the folder "src"
-* whenever giving a directory as an argument, please end it with a slash "/", such as "./input_corpora/corpora/"
-* all the output files and statistic tables (CSV files) are stored in the folder named "results" under the root directory
-* the start time and end time of a launching is concatenated to the folder name to distinguish every launching result
+* all the scripts mentioned below are in the folder "src".
+* whenever giving a directory as an argument, please end it with a slash "/", such as "./input_corpora/corpora/".
+* all the output files and statistic tables (CSV files) are stored in the folder named "results" under the root directory.
+* the start time and end time of a launching is concatenated to the folder name to distinguish every launching result.
 
 ## Step 1 check system environment and install dependencies
 The whole project is developed on Ubuntu 16.04 LTS (64-bit, Kernel: 4.7.1) and Python 2.7.12. Other versions of Ubuntu should work with this project but Python should be the version 2.7.
@@ -18,9 +18,10 @@ The whole project is developed on Ubuntu 16.04 LTS (64-bit, Kernel: 4.7.1) and P
 To build the project environmemt, firstly run "setup.sh" with root to install a set of dependencies and packages. Then extract "tools.tar.gz" in the "src" folder.
 
 ### Before continuing Step 2, several datasets should be prepared:
-* corpus/corpora to computate the vector representations of words (a.k.a word embeddings), in plain text format
-* term-discriptor file to evaluate the embeddings, in csv format
-* existing word embeddings (For all the embeddings, please concatenate the model's name as prefix with the name of its vocabulary file and vector file, for example, change the file name "size\_50.embeddings.voc" to "hpca\_size_50.embeddings.voc" )
+* corpus/corpora to computate the vector representations of words (a.k.a word embeddings), in plain text format.
+* existing word embeddings to evaluate (For all the embeddings, please concatenate the model's name as prefix with the name of its vocabulary file and vector file, for example, change the file name "size\_50.embeddings.voc" to "hpca\_size_50.embeddings.voc" ).
+* term-discriptor file to evaluate the embeddings, in csv format. Already exists in the default input folder.
+* benchmarks of word similarity. Already exsist in the default input folder.
 
 If you need any one of these files, please find them at https://drive.google.com/open?id=0B-TRyz0akbbaeHpaUk5SN1cybW8 
 

@@ -19,17 +19,12 @@ This script performs two proocedures: computating the word embeddings of the fiv
 
 Inputs:
 
-		[1] directory where the corpora locate (One sentence per line)
-		put 0 to apply the default setting: "../input_corpora/corpora/"
-		put 00 to apply the default setting and skip the concatenation
-		put 1 to close this input
-		Attention: be sure that this directory doesn't include files other than corpus files 
-		
-		[2] directory of the input corpus
-		put 0 to use the file in the directory: "../input_corpora/corpus/"
-		put 1 to close this input
+		Attention: One of the following first two arguments must be "1" to avoid repeated input! 
 
-		[3] choice of embeddings to compute or directly using existing embeddings:
+		[1] directory where the corpora locate (Plain text and one sentence per line)
+		put 0 to apply the default setting: "../input_corpora/"
+
+		[2] choice of embeddings to compute or directly using existing embeddings:
 		put 0 for all the five models
 		put 1 for CBOW
 		put 2 for GloVe
@@ -40,13 +35,12 @@ Inputs:
 		put 00 to use Schnabel Embeddings ("../schnabel_embeddings/")
 		Attention: only when all the five models are available that the evaluation procedure will perform
 		
-		[4] Input terms/descriptors path
+		[3] Input terms/descriptors path
 		put 0 for default setting: "../input_terms_descriptors/terme_au_concepts_merged_cleaned.tsv"
 				
-		[5] Prefix of the result directory name
+		[4] Prefix of the result directory name
 		which together with the timestamp serves as the name of the result directory
 			
-		Attention: One of the first two parameters must be "1" to avoid repeated input!
 
 
 Version 0.1 by Jie He @LGI2P, EMA
@@ -66,6 +60,7 @@ def concatenate_corpora(corpora_dir, corpus_path):
 		for fname in os.listdir(corpora_dir):
 			with open(corpora_dir+'/'+fname) as infile:
 				for line in infile: outfile.write(line)
+	return corpus_path
 				
 def process_matrix_chunk_random_projections(Matrix, output_vec_chunk):
 	global Matrix_reduced
@@ -75,6 +70,7 @@ def process_matrix_chunk_random_projections(Matrix, output_vec_chunk):
 
 
 def creat_new_result_folder():
+	if not os.path.exists('../results/'): os.makedir('../results/')
 	timestr = time.strftime("%m%d%H%M%S") 
 	global timestamped_results_dir
 	timestamped_results_dir=results_dir+prefix_of_timestamped_results_dir+timestr+"/"
@@ -82,53 +78,48 @@ def creat_new_result_folder():
 
 
 
-if(len(sys.argv) < 6):
+if(len(sys.argv) < 5):
 	print help_s
 	exit()
 # Parameters and inputs
 NUM_THREADS=" -threads 8"
-corpora_dir = "../input_corpora/corpora/"
-corpus_dir = "../input_corpora/corpus/"
-corpus_path = "../input_corpora/corpus_concatenated/corpus_concatenated.txt"
+corpora_dir = "../input_corpora/"
+corpus_concatenated_path = "../metadata/corpus_concatenated.txt"
 terms_descriptors_path = "../input_terms_descriptors/terme_au_concepts_merged_cleaned.tsv"
 embeddings_dir = '../schnabel_embeddings/'
 results_dir = "../results/"
 
-if (sys.argv[1] != '0' and sys.argv[1] != '1'): corpora_dir = sys.argv[1]
-if sys.argv[2] == '0':
-	flist = os.listdir(corpus_dir)
-	if len(flist) != 1: 
-		print "Attention: there are more than one files in the default corpus directory!"
-		exit()
-	corpus_path = corpus_dir+flist[0]
-if (sys.argv[2] != '0' and sys.argv[2] != '1'): corpus_path = sys.argv[2]
-if sys.argv[3][-1] == '/': embeddings_dir =   sys.argv[3]
-if sys.argv[4] != '0': terms_descriptors_path = sys.argv[4] 
-prefix_of_timestamped_results_dir = sys.argv[5]+'_'
+if sys.argv[1] != '0': corpora_dir = sys.argv[1]
+if sys.argv[2][-1] == '/': embeddings_dir = sys.argv[2]
+if sys.argv[3] != '0': terms_descriptors_path = sys.argv[3] 
+prefix_of_timestamped_results_dir = sys.argv[4]+'_'
 
 
 print "\n>>>>>>>>>>>> Starting the project >>>>>>>>>>>>>\n\t"
 creat_new_result_folder()
 print "\n>>>>>>>>>>>> Creating new result folder for this launching >>>>>>>>>>>>>\n\t"+timestamped_results_dir
 	
-if sys.argv[3] != '00' and sys.argv[3][-1] != '/':
+if sys.argv[2] != '00' and sys.argv[2][-1] != '/':
+	if not os.path.exists('../metadata/'): os.mkdir('../metadata/')
 	embeddings_dir = timestamped_results_dir+'embeddings/'
 	print "\n\n>>>>>>>>>>>> Creating result folder for Embeddings Computation >>>>>>>>>>>>>\n\t"+embeddings_dir
 	os.makedirs(embeddings_dir)
 	
 	# 1 Get sentences from corpora using a memory-friendly iterator (only applicable for cbow at present)
-	if sys.argv[1] != '1' and sys.argv[1] != '00': concatenate_corpora(corpora_dir, corpus_path)
-	print "\nInput corpus:\n\t"+corpus_path
+	corpus_list = os.listdir(corpora_dir)
+	if len(corpus_list) == 1: corpus_path = corpora_dir + corpus_list[0]
+	if len(corpus_list) > 1: corpus_path = concatenate_corpora(corpora_dir, corpus_concatenated_path)
+	print "\nInput corpora:\n\t", corpus_list
 	
 	# 2 Compute the models (embeddings)
 	print "\n>>>>>>>>>>>> Starting embeddings computation >>>>>>>>>>>>>\n"
 	print "Local time: "+time.strftime("%c")
 
 	# 2.1 CBOW (Prediction-based model)
-	if sys.argv[3] == "1" or sys.argv[3] == "0":
+	if sys.argv[2] == "1" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 1 CBOW >>>>>>>>>>>>>\n"
 		embeddings_dir_cbow = embeddings_dir+"cbow/"
-		os.makedirs(embeddings_dir_cbow)
+		if not os.path.exists(embeddings_dir_cbow): os.makedirs(embeddings_dir_cbow)
 	
 		logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 		sentences = Sentences_flow(corpus_path)
@@ -143,17 +134,17 @@ if sys.argv[3] != '00' and sys.argv[3][-1] != '/':
 		print "Local time: "+time.strftime("%c")
 	
 
-	# 3.1 GloVe (Count-based model)
-	if sys.argv[3] == "2" or sys.argv[3] == "0":
+	# 2.2 GloVe (Count-based model)
+	if sys.argv[2] == "2" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 2 GloVe >>>>>>>>>>>>>\n"
 		embeddings_dir_glove = embeddings_dir+"glove/"
-		os.makedirs(embeddings_dir_glove)
+		if not os.path.exists(embeddings_dir_glove): os.makedirs(embeddings_dir_glove)
 		CORPUS= " < "+corpus_path+" >"
-		VOCAB_FILE = "../meta/glove/glove_size_50.embeddings.vocc"
+		VOCAB_FILE = "../metadata/glove/glove_size_50.embeddings.vocc"
 		VOCAB_FILE_refined = embeddings_dir_glove+"glove_size_50.embeddings.voc"
 		BUILDDIR = "./tools/GloVe_1.2/build/"
-		COOCCURRENCE_FILE=" ../meta/glove/glove_cooccurrence.bin"
-		COOCCURRENCE_SHUF_FILE=" ../meta/glove/glove_cooccurrence.shuf.bin"
+		COOCCURRENCE_FILE=" ../metadata/glove/glove_cooccurrence.bin"
+		COOCCURRENCE_SHUF_FILE=" ../metadata/glove/glove_cooccurrence.shuf.bin"
 		SAVE_FILE=" -save-file "+embeddings_dir_glove+"glove_size_50.embeddings.vec"
 		VERBOSE=" -verbose 2"
 		MEMORY=" -memory 4.0"
@@ -193,18 +184,18 @@ if sys.argv[3] != '00' and sys.argv[3][-1] != '/':
 		print "Local time: "+time.strftime("%c")
 	
 
-	# 3.2 HPCA (Count-based model)
-	if sys.argv[3] == "3" or sys.argv[3] == "0":
+	# 2.3 HPCA (Count-based model)
+	if sys.argv[2] == "3" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 3 HPCA >>>>>>>>>>>>>\n"
 		embeddings_dir_hpca = embeddings_dir+"hpca/"
-		os.makedirs(embeddings_dir_hpca)
-		HPCA_VOC_Path = " -vocab-file ../meta/hpca/hpca_general.voc"
+		if not os.path.exists(embeddings_dir_hpca): os.makedirs(embeddings_dir_hpca)
+		HPCA_VOC_Path = " -vocab-file ../metadata/hpca/hpca_general.voc"
 		VERBOSE_hpca = " -verbose 1"
-		EMB_path = "../meta/hpca/hpca_size_50.embeddings.vecc"
+		EMB_path = "../metadata/hpca/hpca_size_50.embeddings.vecc"
 		
 		# Deprecated becasue the preprocess has already been done
 		#print "\n>>>>>>>>>>>>>>> HPCA 1 preprocessing >>>>>>>>>>>>\n"
-		#cmd1_preprocess = "./tools/hpca-master/bin/preprocess -input-file "+corpus_path+" -output-file ../meta/hpca/hpca_corpus_clean.txt -lower 1 -digit 1 -verbose 1"+ NUM_THREADS
+		#cmd1_preprocess = "./tools/hpca-master/bin/preprocess -input-file "+corpus_path+" -output-file ../metadata/hpca/hpca_corpus_clean.txt -lower 1 -digit 1 -verbose 1"+ NUM_THREADS
 		#print cmd1_preprocess
 		#os.system(cmd1_preprocess)
 	
@@ -214,37 +205,37 @@ if sys.argv[3] != '00' and sys.argv[3][-1] != '/':
 		os.system(cmd1_get_vocabulary)
 	
 		print "\n>>>>>>>>>>>>>> HPCA 2 get cooccurrence statistics <<<<<<<<<<<<<<<<\n"
-		cmd2_cooccurence = "./tools/hpca-master/bin/cooccurrence -input-file "+ corpus_path + HPCA_VOC_Path +" -output-dir ../meta/hpca/ -min-freq 50 -cxt-size 5 -dyn-cxt 0 -upper-bound 1.0 -lower-bound 0.00001 -memory 4.0"+ VERBOSE_hpca + NUM_THREADS
+		cmd2_cooccurence = "./tools/hpca-master/bin/cooccurrence -input-file "+ corpus_path + HPCA_VOC_Path +" -output-dir ../metadata/hpca/ -min-freq 50 -cxt-size 5 -dyn-cxt 0 -upper-bound 1.0 -lower-bound 0.00001 -memory 4.0"+ VERBOSE_hpca + NUM_THREADS
 		print cmd2_cooccurence
 		os.system(cmd2_cooccurence)
 	
 		print "\n>>>>>>>>>>>>>> HPCA 3 perform Hellinger PCA <<<<<<<<<<<<<<<<\n"
-		cmd3_hpca = "./tools/hpca-master/bin/pca -input-dir ../meta/hpca -rank 300" + NUM_THREADS + VERBOSE_hpca
+		cmd3_hpca = "./tools/hpca-master/bin/pca -input-dir ../metadata/hpca -rank 300" + NUM_THREADS + VERBOSE_hpca
 		print cmd3_hpca
 		os.system(cmd3_hpca)
 	
 		print "\n>>>>>>>>>>>>>> HPCA 4 compute word embeddings <<<<<<<<<<<<<<<<\n"
-		cmd4_computeembeddings = "./tools/hpca-master/bin/embeddings -input-dir ../meta/hpca -output-path " + EMB_path + " -dim 50 -eig 0 -norm 0 " + VERBOSE_hpca + NUM_THREADS
+		cmd4_computeembeddings = "./tools/hpca-master/bin/embeddings -input-dir ../metadata/hpca -output-path " + EMB_path + " -dim 50 -eig 0 -norm 0 " + VERBOSE_hpca + NUM_THREADS
 		print cmd4_computeembeddings
 		os.system(cmd4_computeembeddings)
 	
 		# Refine the results
-		shutil.copyfile('../meta/hpca/target_words.txt',embeddings_dir_hpca+'hpca_size_50.embeddings.voc')
-		with open(EMB_path,'r') as vecc, open('../meta/hpca/target_words.txt','r') as voc, open(embeddings_dir_hpca+'hpca_size_50.embeddings.vec','w+') as vec:
+		shutil.copyfile('../metadata/hpca/target_words.txt',embeddings_dir_hpca+'hpca_size_50.embeddings.voc')
+		with open(EMB_path,'r') as vecc, open('../metadata/hpca/target_words.txt','r') as voc, open(embeddings_dir_hpca+'hpca_size_50.embeddings.vec','w+') as vec:
 			for l_vecc, l_voc in itertools.izip(vecc,voc): vec.write(l_voc.strip()+'\t'+l_vecc.strip()+'\n') 
 	
 		print "\n<<<<<<<<<<<< Ended model 3 HPCA <<<<<<<<<<<<<<<\n"
 		print "Local time: "+time.strftime("%c")
 	
 
-	# 3.3 Random Projection (Count-based model)
-	if sys.argv[3] == "4" or sys.argv[3] == "0":
+	# 2.4 Random Projection (Count-based model)
+	if sys.argv[2] == "4" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 4 Sparse Random Projection >>>>>>>>>>>>>\n"
 		embeddings_dir_random_projection = embeddings_dir+"random_projection/"
-		os.makedirs(embeddings_dir_random_projection)
+		if not os.path.exists(embeddings_dir_random_projection): os.makedirs(embeddings_dir_random_projection)
 		# Load the co-occurrence matrix
 		transformer = random_projection.SparseRandomProjection(n_components=50, density='auto', eps=0.1, dense_output=False, random_state=None)# n_components is the dimension of the reduced matrix
-		with open('../meta/hpca/cooccurrence_matrix.txt','r') as mat,  open("../meta/random_projection/embeddings.vecc",'w+') as output_vec_chunk:
+		with open('../metadata/hpca/cooccurrence_matrix.txt','r') as mat,  open("../metadata/random_projection/embeddings.vecc",'w+') as output_vec_chunk:
 			i = 0
 			rows = sum(1 for line in mat) # count rows
 			mat.seek(0,0)
@@ -266,27 +257,27 @@ if sys.argv[3] != '00' and sys.argv[3][-1] != '/':
 		print "\nThe last chunk of co-occurence matrix is reduced to " + str(Matrix_reduced.shape)
 		
 		# Store the reduced matrix
-		with open(embeddings_dir_random_projection+"/random_projection_size_50.embeddings.vec",'w+') as output_vec, open ('../meta/hpca/target_words.txt') as voc, open('../meta/random_projection/embeddings.vecc','r') as vecc:
+		with open(embeddings_dir_random_projection+"/random_projection_size_50.embeddings.vec",'w+') as output_vec, open ('../metadata/hpca/target_words.txt') as voc, open('../metadata/random_projection/embeddings.vecc','r') as vecc:
 			for l_vecc, l_voc in itertools.izip(vecc, voc):
 				output_vec.write(l_voc.strip() + '\t' + l_vecc)
 				
 		# Copy vocabulary file from HPCA
-		shutil.copyfile('../meta/hpca/target_words.txt',embeddings_dir_random_projection+'random_projection_size_50.embeddings.voc')
+		shutil.copyfile('../metadata/hpca/target_words.txt',embeddings_dir_random_projection+'random_projection_size_50.embeddings.voc')
 		print "\n<<<<<<<<<<<< Ended model 4 Sparse Random Projection <<<<<<<<<<<<<<<\n"
 		print "Local time: "+time.strftime("%c")
 	
 	
-	# 3.4 TSCCA
-	if sys.argv[3] == "5" or sys.argv[3] == "0":
+	# 2.5 TSCCA
+	if sys.argv[2] == "5" or sys.argv[2] == "0":
 		print "\n>>>>>>>>>>>> Starting model 5 TSCCA >>>>>>>>>>>>>\n"
 		embeddings_dir_tscca = embeddings_dir+"tscca/"
-		os.makedirs(embeddings_dir_tscca)
+		if not os.path.exists(embeddings_dir_tscca): os.makedirs(embeddings_dir_tscca)
 	
 		tscca_emb_path = embeddings_dir_tscca+'tscca_size_50.embeddings.vec'
 		cmd_tscca = 'ant -Dcorpus_path='+corpus_path+' CCAVariantsTSCCA '
 		print cmd_tscca
 		os.system(cmd_tscca)
-		shutil.copyfile('../meta/tscca/eigenDictCCARunningTextTwoStepLRvsW',tscca_emb_path)
+		shutil.copyfile('../metadata/tscca/eigenDictCCARunningTextTwoStepLRvsW',tscca_emb_path)
 	
 		# Move the vectors file and extract the vocabulary file
 		with open(embeddings_dir_tscca+'tscca_size_50.embeddings.voc','w+') as voc, open(tscca_emb_path,'r') as vec:
@@ -299,7 +290,7 @@ if sys.argv[3] != '00' and sys.argv[3][-1] != '/':
 	print "\n<<<<<<<<<<<< End of calculation <<<<<<<<<<<<<<<\n"
 
 # Evaluation (perform conditionally)
-if sys.argv[3] == "0" or sys.argv[3][-1] == "/"  or sys.argv[3] == "00":
+if sys.argv[2] == "0" or sys.argv[2][-1] == "/"  or sys.argv[2] == "00":
 	print "\n>>>>>>>>>>>> Starting evaluation >>>>>>>>>>>>>>>\n"
 	print "Local time: "+time.strftime("%c")+"\n"
 

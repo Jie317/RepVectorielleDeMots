@@ -173,6 +173,7 @@ if sys.argv[7] != '0': hidden_dim = int(sys.argv[7])
 print '\n>>>>>>>>>>>> Starting training and test >>>>>>>>>>>'
 print "Local time: "+time.strftime("%c")
 print '\nInput benchmark file;\n', sample_data_path
+if not os.path.exists('../results/'): os.makedir('../results/')
 
 if not skip: timestamped_results_dir = get_sample_matrix( results_dir, prefix_dir, sample_data_path, embeddings_dir)
 

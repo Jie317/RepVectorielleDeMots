@@ -5,7 +5,8 @@ if [ "$(id -u)" != "0" ]; then
    echo "Please run as root" 1>&2
    exit 1
 fi
-
+tar -xvzf tools.tar.gz
+rm tools.tar.gz
 
 if [ $? -eq 0 ]; then
 	apt-get install python-pip python-dev python-numpy python-scipy python-matplotlib software-properties-common zlib1g-dev

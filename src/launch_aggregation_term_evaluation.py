@@ -159,6 +159,7 @@ HIDDEN_DIM = 1 # fixed to 1 to degrade the neural model to single neuron model
 details_dir = sys.argv[1]
 if sys.argv[2] != '0': it = int(sys.argv[2])
 if sys.argv[3] != '0': alpha = float(sys.argv[3])
+if not os.path.exists('../results/'): os.makedir('../results/')
 
 global_result_path = glob.glob(details_dir[:-8]+'*evaluation_result.csv')[0]
 

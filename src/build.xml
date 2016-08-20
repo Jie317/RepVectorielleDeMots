@@ -83,7 +83,7 @@
     <target name="CCAVariantsTSCCA">
         <java classname="edu.upenn.cis.swell.MainMethods.CCAVariants" failonerror="true" fork="yes">
             <jvmarg line="-Xmx50G"/>
-            <arg line="unlab-train  unlab-train-file:../.${corpus_path} output-dir-prefix:../../meta/tscca vocab-size:30000 hidden-state:50 algorithm:CCARunningText:TwoStepLRvsW contextSizeEachSide:2 sqrt-trans"/>
+            <arg line="unlab-train  unlab-train-file:../../${corpus_path} output-dir-prefix:../../meta/tscca vocab-size:30000 hidden-state:50 algorithm:CCARunningText:TwoStepLRvsW contextSizeEachSide:2 sqrt-trans"/>
             <classpath refid="swell.classpath"/>
             <bootclasspath>
                 <path refid="run.CCAVariants.bootclasspath"/>

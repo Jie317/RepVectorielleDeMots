@@ -17,6 +17,10 @@ The whole project is developed on Ubuntu 16.04 LTS (64-bit, Kernel: 4.7.1) and P
 
 To build the project environmemt, firstly run "setup.sh" with root to install a set of dependencies and packages. Then extract "tools.tar.gz" in the "src" folder.
 
+### Before continuing Step 2, several datasets should be prepared:
+* corpus/corpora to computate the vector representations of words (a.k.a word embeddings), in plain text format
+* term-discriptor file to evaluate the embeddings, in csv format
+* existing word embeddings (For all the embeddings, please concatenate the model's name as prefix with the name of its vocabulary file and vector file, for example, change the file name "size\_50.embeddings.voc" to "hpca\_size_50.embeddings.voc" )
 
 ## Step 2 perform the computation and evaluation of models
 The arguments for this script are:
@@ -51,6 +55,4 @@ The arguments for this script are:
 
 Please run firstly the python script "launch\_aggregation\_word_similarity.py" without argument and then read the detailed explanation of these arguments which appears next. Default arguments are provided to give examples about the format. Then run it again with arguments and check the results in the folder "results".
 
-
-
-If there is any problem, please contact me (jie.he@mines-ales.org)
+End of the documentation. If there is any problem, please contact me (jie.he@mines-ales.org)

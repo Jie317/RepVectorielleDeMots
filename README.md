@@ -6,7 +6,7 @@
 
 ##To install the whole project and reproduce all the results, please follow the 4 steps below:
 
-###Please note that all the scripts mentioned below are in the folder "src", and whenever giving a directory as an argument please end it with a slash "/", such as "../schnabel_embeddings/"
+###Please note that all the scripts mentioned below are in the folder "src", and whenever giving a directory as an argument please end it with a slash "/", such as "./input_corpora/corpora/".
 
 ## Step 1 check system environment and install dependencies
 The whole project is developed on Ubuntu 16.04 LTS (64-bit, Kernel: 4.7.1) and Python 2.7.12. Other versions of Ubuntu should work with this project.
@@ -15,12 +15,7 @@ To build the project environmemt, firstly run "setup.sh" with root to install al
 
 
 ## Step 2 perform the computation and evaluation of models
-Firstly, please place the datasets respectively in the following directories:
-* put your corpus in "./input\_corpora/corpus/" or put your corpora in "./input_corpora/corpora/"
-* put schnabel's embeddings (the 6 embeddings folders) in "./schnabel_embeddings/"
-* put your terms/discriptors file in "./input\_terms_descriptors/"
-
-Then run the python script "launch\_computation\_and\_evaluation.py" and and read the explanation of arguments which appears next. 
+Please run the python script "launch\_computation\_and\_evaluation.py" and and read the explanation of arguments which appears next. 
 
 * Please note that for the computation of the model TSCCA, the settings are in the buil.xml file in the current folder. All the computations of embeddings have taken the default settings.
 

@@ -70,7 +70,7 @@ def process_matrix_chunk_random_projections(Matrix, output_vec_chunk):
 
 
 def creat_new_result_folder():
-	if not os.path.exists('../results/'): os.makedir('../results/')
+	if not os.path.exists('../results/'): os.makedirs('../results/')
 	timestr = time.strftime("%m%d%H%M%S") 
 	global timestamped_results_dir
 	timestamped_results_dir=results_dir+prefix_of_timestamped_results_dir+timestr+"/"
@@ -100,7 +100,7 @@ creat_new_result_folder()
 print "\n>>>>>>>>>>>> Creating new result folder for this launching >>>>>>>>>>>>>\n\t"+timestamped_results_dir
 	
 if sys.argv[2] != '00' and sys.argv[2][-1] != '/':
-	if not os.path.exists('../metadata/'): os.makedir('../metadata/')
+	if not os.path.exists('../metadata/'): os.makedirs('../metadata/')
 	embeddings_dir = timestamped_results_dir+'embeddings/'
 	print "\n\n>>>>>>>>>>>> Creating result folder for Embeddings Computation >>>>>>>>>>>>>\n\t"+embeddings_dir
 	os.makedirs(embeddings_dir)

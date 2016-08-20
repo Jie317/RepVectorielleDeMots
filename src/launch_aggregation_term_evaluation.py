@@ -204,7 +204,7 @@ h_row_pr_m = [[n] for n in mns]+[['Average']]
 wm_output = np.vstack((h_wm, np.hstack((h_row,wm))))
 oprs_output = np.vstack((h_pr, np.hstack((h_row_pr,np.vstack((oprs,np.mean(oprs,axis=0)))))))
 prs_output = np.vstack((h_pr, np.hstack((h_row_pr,np.vstack((prs,np.mean(prs,axis=0)))))))
-g_re.write('\n>>>>>>>>>>>>>>>>\nTC evaluation task: local time %s\n' % time.strftime("%d%H%M%S"))
+g_re.write('\n>>>>>>>>>>>>>>>>\nTC evaluation task: local time %s\n' % time.strftime("%c"))
 np.savetxt(g_re, wm_output, delimiter='\t', header='>>>>>>>>Conclusion (it=%d,alpha=%.2f)\n>>>>Weight matrix (K=3)' % (it,alpha), fmt='%s')
 np.savetxt(g_re, oprs_output, delimiter='\t', header='\n>>>>Original Prediction Accuracy', fmt='%s')
 np.savetxt(g_re, prs_output, delimiter='\t', header='\n>>>>Prediction Accuracy With Trained Weights', fmt='%s')

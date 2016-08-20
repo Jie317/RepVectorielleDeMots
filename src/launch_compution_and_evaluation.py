@@ -29,7 +29,7 @@ Inputs:
 		put 1 for CBOW
 		put 2 for GloVe
 		put 3 for HPCA
-		put 4 for Random Projections
+		put 4 for Random Projections (must be run later than HPCA)
 		put 5 for TSCCA
 		put existing embeddings directory to skip this procedure (terminated with "/")
 		put 00 to use Schnabel Embeddings ("../schnabel_embeddings/")

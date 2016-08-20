@@ -10,7 +10,8 @@
 
 ## Step 1 check system environment and install dependencies
 The whole project is developed on Ubuntu 16.04 LTS (64-bit, Kernel: 4.7.1) and Python 2.7.12. Other versions of Ubuntu should work with this project.
-Firstly run "setup.sh" with root to install all the dependencies and packages. Then extract "tools.tar.gz" in the "src" folder.
+
+To build the project environmemt, firstly run "setup.sh" with root to install all the dependencies and packages. Then extract "tools.tar.gz" in the "src" folder.
 
 
 ## Step 2 perform the computation and evaluation of models

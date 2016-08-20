@@ -1,7 +1,7 @@
-# The whole project consists of three parts:
+## The whole project consists of three parts:
 * 1) the computation of the five vector representations (word embeddings) and the evaluation of the models
-2) the aggregation of model on the term evaluation task
-3) the aggregation of model on the word similarity task
+* 2) the aggregation of model on the term evaluation task
+* 3) the aggregation of model on the word similarity task
 
 
 #To install the whole project and reproduce all the results, please follow the 4 steps below:
@@ -35,4 +35,5 @@ Please run the python script "launch_aggregation_word_similarity.py" and read th
 All the result files are stored in the folder "results/" in the root directory of the project. For each launching, there will be an independent folder whose name is marked with uique time label (a conbination of the time in the beginning and the time in the end). 
 
 
-If there is any problem, please contact me (jie.he@mines-ales.org).
+
+If there is any problem, please contact me (jie.he@mines-ales.org)

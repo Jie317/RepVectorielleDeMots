@@ -15,7 +15,15 @@ To build the project environmemt, firstly run "setup.sh" with root to install al
 
 
 ## Step 2 perform the computation and evaluation of models
-Please run the python script "launch\_computation\_and\_evaluation.py" and and read the explanation of arguments which appears next. 
+Please run the python script "launch\_computation\_and\_evaluation.py" and then read the explanation of arguments which appears next. The arguments for this script are:
+
+* [1] directory where the corpora locate (One sentence per line)
+* [2] directory of the input corpus
+* [3] choice of embeddings to compute or directly using existing embeddings
+* [4] Input terms/descriptors path
+* [5] Prefix of the result directory name
+
+Then run it again with arguments.
 
 * Please note that for the computation of the model TSCCA, the settings are in the buil.xml file in the current folder. All the computations of embeddings have taken the default settings.
 

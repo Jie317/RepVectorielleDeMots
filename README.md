@@ -19,6 +19,7 @@ Firstly, please place the datasets respectively in the following directories:
 * put your corpus in "./input\_corpora/corpus/" or put your corpora in "./input_corpora/corpora/"
 * put schnabel's embeddings (the 6 embeddings folders) in "./schnabel_embeddings/"
 * put your terms/discriptors file in "./input\_terms_descriptors/"
+
 Then run the python script "launch\_computation\_and\_evaluation.py" and and read the explanation of arguments which appears next. 
 
 * Please note that for the computation of the model TSCCA, the settings are in the buil.xml file in the current folder. All the computations of embeddings have taken the default settings.

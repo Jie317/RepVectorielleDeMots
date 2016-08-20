@@ -15,7 +15,7 @@
 ## Step 1 check system environment and install dependencies
 The whole project is developed on Ubuntu 16.04 LTS (64-bit, Kernel: 4.7.1) and Python 2.7.12. Other versions of Ubuntu should work with this project but Python should be the version 2.7.
 
-To build the project environmemt, firstly run "setup.sh" with root to install a set of dependencies and packages. Then extract "tools.tar.gz" in the "src" folder.
+To build the project environmemt, run "setup.sh" with root to install a set of dependencies and packages. 
 
 ### Before continuing Step 2, several datasets should be prepared:
 * corpus/corpora to computate the vector representations of words (a.k.a word embeddings), in plain text format.
@@ -58,4 +58,4 @@ The arguments for this script are:
 
 Please run firstly the python script "launch\_aggregation\_word_similarity.py" without argument and then read the detailed explanation of these arguments which appears next. Default arguments are provided to give examples about the format. Then run it again with arguments and check the results in the folder "results".
 
-End of the documentation. If there is any problem, please contact me (jie.he@mines-ales.org)
+End of the documentation. If there is any problem, please contact me (jie.he@mines-ales.org).

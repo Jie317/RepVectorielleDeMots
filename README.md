@@ -14,13 +14,11 @@ Firstly run "setup.sh" with root to install all the dependencies and packages. T
 
 
 ## Step 2 perform the computation and evaluation of models
-Firstly, please check whether you want to substitute the default files with new ones in the following directory:
-	./input_corpora/corpora/
-	./input_corpora/corpus/
-	./schnabel_embeddings/
-	./input\_terms_descriptors/
-If you want to change the files in these directories, please simply move your files there delete the original ones. But if you want to substitute any folder please keep the folder name the same.
-Then run the python script "launch\_computation\_and\_evaluation.py" and read the details about parameter settings. Finally launch this script with appropriate parameters. 
+Firstly, please place the datasets respectively in the following directories:
+* put your corpus in "./input\_corpora/corpus/" or put your corpora in "./input_corpora/corpora/"
+* put schnabel's embeddings (the 6 embeddings folders) in "./schnabel_embeddings/"
+* put your terms/discriptors file in "./input\_terms_descriptors/"
+Then run the python script "launch\_computation\_and\_evaluation.py" and and read the explanation of arguments which appears next. 
 
 * Please note that for the computation of the model TSCCA, the settings are in the buil.xml file in the current folder. All the computations of embeddings have taken the default settings.
 

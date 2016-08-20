@@ -8,8 +8,9 @@
 
 ###Please note that:
 * all the scripts mentioned below are in the folder "src".
+* all the scripts should be run under the directory of the folder "src". 
 * whenever giving a directory as an argument, please try to use relative directory and end it with a slash "/", such as "../input_corpora/corpora/".
-* all the output files and statistic tables (CSV files) are stored in the folder named "results" under the root directory.
+* all the output files and statistic tables (CSV files) are stored in the folder named "results" under the root directory after any launching.
 * the start time and end time of a launching is concatenated to the folder name to distinguish every launching result.
 
 ## Step 1 check system environment and install dependencies

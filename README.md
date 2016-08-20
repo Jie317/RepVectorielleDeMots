@@ -21,7 +21,8 @@ To build the project environmemt, firstly run "setup.sh" with root to install a 
 * corpus/corpora to computate the vector representations of words (a.k.a word embeddings), in plain text format
 * term-discriptor file to evaluate the embeddings, in csv format
 * existing word embeddings (For all the embeddings, please concatenate the model's name as prefix with the name of its vocabulary file and vector file, for example, change the file name "size\_50.embeddings.voc" to "hpca\_size_50.embeddings.voc" )
-* ### If you need any one of these files, please find them at https://drive.google.com/open?id=0B-TRyz0akbbaeHpaUk5SN1cybW8 
+
+If you need any one of these files, please find them at https://drive.google.com/open?id=0B-TRyz0akbbaeHpaUk5SN1cybW8 
 
 ## Step 2 perform the computation and evaluation of models
 The arguments for this script are:

@@ -28,11 +28,10 @@ If you need any one of these files, please find them at https://drive.google.com
 
 ## Step 2 perform the computation and evaluation of models
 The arguments for this script are:
-* [1] directory where the corpora locate (One sentence per line)
-* [2] directory of the input corpus
-* [3] choice of embeddings to compute or directly using existing embeddings
-* [4] Input terms/descriptors path
-* [5] Prefix of the result directory name
+* [1] directory where the corpora locate (Plain text and one sentence per line)
+* [2] choice of embeddings to compute or directly using existing embeddings
+* [3] Input terms/descriptors path
+* [4] Prefix of the result directory name
 * Please note that for the computation of the model TSCCA, the settings are in the buil.xml file in the current folder. All the computations of embeddings have taken the default settings.
 
 Please run firstly the python script "launch\_computation\_and\_evaluation.py" without argument and then read the detailed explanation of these arguments which appears next. Default arguments are provided to give examples about the format. Then run it again with arguments and check the results in the folder "results". 

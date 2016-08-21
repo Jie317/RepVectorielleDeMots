@@ -7,7 +7,7 @@ import numpy as np
 
 help_s = '''
 
-A script to 
+A script to cluster the terms.
 Inputs:
 
 	[1] sample data path (one term and its frequency per line and separated by comma)
@@ -33,7 +33,7 @@ def tensorflow_k_means_cluatering(points_list, K, MAX_ITERS): # return clusterin
 	dims = len(points_list[0])
 	points = tf.constant(points_list)
 	cluster_assignments = tf.Variable(tf.zeros([N], dtype=tf.int64))
-	#  Initialization of the centroids (could do better)
+	#  Initialization of the centroids (Potential problem here about chosing the initial centroids!!!)
 	centroids = tf.Variable(tf.slice(points, [1,0], [K,dims]))
 	# Replicate to N copies of each centroid and K copies of each
 	# point, then subtract and compute the sum of squared distances.

@@ -7,7 +7,8 @@ import numpy as np
 
 help_s = '''
 
-A script to cluster the terms.
+A script to cluster the terms concerned about the human evaluation of scent of the wine products.
+
 Inputs:
 
 	[1] sample data path (one term and its frequency per line and separated by comma)
@@ -69,7 +70,8 @@ def get_model_names(sup_dir):
 	print '\nRetrieving model names >>>>>>'
 	mns = []
 	m_dirs = glob.glob('%s*/' % sup_dir)
-	for n in m_dirs: mns.append(n.replace(sup_dir,'')[:-1])
+	for n in m_dirs: 
+		mns.append(n.replace(sup_dir,'')[:-1])
 	print 'Model names:', mns
 	return mns
 

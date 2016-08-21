@@ -7,7 +7,7 @@ import numpy as np
 
 help_s = '''
 
-A script to cluster the terms.
+A script to cluster the terms concerned about the human evaluation of scent of the wine products.
 Inputs:
 
 	[1] sample data path (one term and its frequency per line and separated by comma)

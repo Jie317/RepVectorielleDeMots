@@ -2,6 +2,7 @@
 import sys
 import time
 import glob
+import random
 import tensorflow as tf
 import numpy as np
 
@@ -28,14 +29,14 @@ Version 0.1 by Jie He @LGI2P, EMA
 
 '''
 
-def tensorflow_k_means_cluatering(points_list, K, MAX_ITERS): # return clustering centers and point assignments
+def tensorflow_k_means_cluatering(points_list, init_cs, K, MAX_ITERS): # return clustering centers and point assignments
 	start = time.time()
 	N = len(points_list)
 	dims = len(points_list[0])
 	points = tf.constant(points_list)
 	cluster_assignments = tf.Variable(tf.zeros([N], dtype=tf.int64))
 	#  Initialization of the centroids (Potential problem here about chosing the initial centroids!!!)
-	centroids = tf.Variable(tf.slice(points, [1,0], [K,dims]))
+	centroids = tf.Variable(init_cs)
 	# Replicate to N copies of each centroid and K copies of each
 	# point, then subtract and compute the sum of squared distances.
 	rep_centroids = tf.reshape(tf.tile(centroids, [N, 1]), [N, K, dims])
@@ -84,17 +85,28 @@ def get_term_frequency(terms_path):
 	return t_f
 
 
-def get_points(models_dir, m, t_f):
-	print '\nRetrieving points(vectors) >>>>>>'
-
+def get_points_and_init_centroids(models_dir, m, t_f, K):
+	print '\nRetrieving points(vectors) and initial random centroids >>>>>>'
+	init_cs = []
 	ps = []
+	t_vs ={}
+	t_f_rep = t_f.copy()
 	with open('%s%s/%s_size_50.embeddings.vec' % (models_dir, m, m)) as vec:
 		for l in vec:
-			if l.split()[0] in t_f:
-				ps += [[float(v) for v in l.split()[1:]]]*t_f[l.split()[0]]
-				del t_f[l.split()[0]]
-	print 'Total points(vectors):', len(ps), ' Vector dimension:', len(ps[0]), '\nTerms not found:', t_f 
-	return [len(ps), len(ps[0]), ps]
+			t = l.split()[0]
+			vec = [float(v) for v in l.split()[1:]]
+			if t in t_f:
+				t_vs[t] = vec
+				ps += [vec]*t_f[t]
+				del t_f_rep[t]
+	ts_valid = t_vs.keys()
+	random.shuffle(ts_valid)
+	for ct in ts_valid[:K]: init_cs.append(t_vs[ct])
+	print 'Total points(vectors):', len(ps), ' Vector dimension:', len(ps[0])
+	print '\nTerms not found:\n', t_f_rep, '\n\nInitial random centroids:', ts_valid[:K]
+
+
+	return [len(ps), len(ps[0]), ps, init_cs]
 
 def find_concepts(vecs):
 	for vec in vecs:
@@ -120,18 +132,15 @@ def main(args):
 	mns = get_model_names(models_dir)
 	t_f = get_term_frequency(terms_path)
 
-	for m in mns:
-		print '\n\n>>>>> Starting model ', m
-		[N, dims, points] = get_points(models_dir, m, t_f)
-		[centers, assignments, iters, time] = tensorflow_k_means_cluatering(points, K, MAX_ITERS)
+	for i,m in enumerate(mns):
+		print '\n\n>>>>> Starting model %d: %s' % (i, m)
+		[N, dims, points, init_centers] = get_points_and_init_centroids(models_dir, m, t_f, K)
+		[centers, assignments, iters, time] = tensorflow_k_means_cluatering(points, init_centers, K, MAX_ITERS)
 		print ('\nFor model:%s\nFound in %.2f seconds' % (m, time)), iters, 'iterations'
-		print 'Centroids:\n', centers
-		print '\n>>>>> Starting model ', m
-		[N, dims, points] = get_points(models_dir, m, t_f)
-		[centers, assignments, iters, time] = tensorflow_k_means_cluatering(points, K, MAX_ITERS)
-		print ('For model:%s\nFound in %.2f seconds' % (m, time)), iters, 'iterations'
-		print 'Centroids:', centers
+		print 'Centroid matrix size:', centers.shape
 		#print 'Cluster assignments:', assignments
+
+
 
 if __name__ == '__main__':
 	args = sys.argv

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libutil.a  CMakeFiles/util.dir/data.cpp.o CMakeFiles/util.dir/file.cpp.o CMakeFiles/util.dir/hashtable.cpp.o CMakeFiles/util.dir/thread.cpp.o CMakeFiles/util.dir/util.cpp.o
+/usr/bin/ranlib libutil.a

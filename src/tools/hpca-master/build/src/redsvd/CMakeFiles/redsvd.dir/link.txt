@@ -1,0 +1,2 @@
+/usr/bin/ar qc libredsvd.a  CMakeFiles/redsvd.dir/redsvdFile.cpp.o CMakeFiles/redsvd.dir/util.cpp.o
+/usr/bin/ranlib libredsvd.a

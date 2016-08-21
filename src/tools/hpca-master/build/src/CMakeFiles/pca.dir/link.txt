@@ -1,0 +1,1 @@
+g++    -fopenmp    CMakeFiles/pca.dir/pca.cpp.o  -o ../../bin/pca -rdynamic util/libutil.a redsvd/libredsvd.a -lm -lz /usr/lib/libblas.so.3gf /usr/lib/liblapack.so.3gf /usr/lib/libblas.so.3gf /usr/lib/liblapack.so.3gf 

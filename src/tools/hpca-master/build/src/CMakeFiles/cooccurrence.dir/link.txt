@@ -1,0 +1,1 @@
+g++    -fopenmp    CMakeFiles/cooccurrence.dir/cooccurrence.cpp.o  -o ../../bin/cooccurrence -rdynamic util/libutil.a -lz 

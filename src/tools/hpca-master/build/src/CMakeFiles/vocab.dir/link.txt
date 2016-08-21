@@ -1,0 +1,1 @@
+g++    -fopenmp    CMakeFiles/vocab.dir/vocab.cpp.o  -o ../../bin/vocab -rdynamic util/libutil.a -lz 

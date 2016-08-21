@@ -1,0 +1,1 @@
+g++    -fopenmp    CMakeFiles/embeddings.dir/embeddings.cpp.o  -o ../../bin/embeddings -rdynamic util/libutil.a redsvd/libredsvd.a -lm -lz /usr/lib/libblas.so.3gf /usr/lib/liblapack.so.3gf /usr/lib/libblas.so.3gf /usr/lib/liblapack.so.3gf 

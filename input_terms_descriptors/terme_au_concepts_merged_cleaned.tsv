@@ -1,0 +1,328 @@
+animal  	animal	domestic animal	domestic animal	leather
+animal  	animal	animal	animal	animal
+chorizo	animal	domestic animal	domestic animal	meat
+farm	animal	domestic animal	domestic animal	farm
+fish	animal	animal	animal	animal
+grilled sausage	animal	domestic animal	domestic animal	sausage
+horse  	animal	domestic animal	domestic animal	horse
+leather  	animal	domestic animal	domestic animal	leather
+meat juices 	animal	domestic animal	domestic animal	meat
+meaty  	animal	domestic animal	domestic animal	meat
+meaty sauce	animal	domestic animal	domestic animal	meat juice
+sausage  	animal	domestic animal	domestic animal	sausage
+stable  	animal	animal	animal	farm
+sweat  	animal	domestic animal	domestic animal	sweat
+wet dog 	animal	domestic animal	domestic animal	wet dog
+aromatic herbs 	aromatic herbs	aromatic herbs	aromatic herbs	aromatic herbs
+fresh laurel	aromatic herbs	aromatic herbs	aromatic herbs	laurel
+herbs	aromatic herbs	aromatic herbs	aromatic herbs	aromatic herbs
+laurel  	aromatic herbs	aromatic herbs	aromatic herbs	laurel
+rosemary  	aromatic herbs	aromatic herbs	aromatic herbs	rosemary
+mint  	aromatics herbs	aromatics herbs	aromatics herbs	mint
+thyme  	aromatics herbs	aromatics herbs	aromatics herbs	thyme
+acetate  	chemical	industrial chemical	industrial chemical	industrial chemical
+acetic  	chemical	oxidized	oxidized	vinegar
+acetic acid	chemical	oxidized	oxidized	vinegar
+acetone	chemical	industrial chemical	industrial chemical	solvent
+alcohol  	chemical	industrial chemical	industrial chemical	alcohol
+ammoniac	chemical	industrial chemical	industrial chemical	ammoniac
+ascessence	chemical	oxidized	oxidized	vinegar
+camphor  	chemical	industrial chemical	industrial chemical	camphor
+caoutchou  	chemical	industrial chemical	industrial chemical	plastic
+carbon	chemical	industrial chemical	industrial chemical	hydrocarbon
+chemical	chemical	chemical	chemical	chemical
+cooked cabbage 	chemical	oxidized	oxidized	cooked cabbage
+cosmetics  	chemical	chemical	chemical	chemical
+detergent	chemical	industrial chemical	industrial chemical	solvent
+ethanol  	chemical	industrial chemical	industrial chemical	solvent
+ethyl acetate 	chemical	industrial chemical	industrial chemical	solvent
+ethyl phenol	chemical	pharmaceutical chemical	pharmaceutical chemical	phenols
+gas  	chemical	chemical	chemical	chemical
+gouache	chemical	industrial chemical	industrial chemical	solvent
+kirch cherry	chemical	industrial chemical	industrial chemical	alcohol
+kirsch cherry 	chemical	industrial chemical	industrial chemical	alcohol
+mercaptan  	chemical	oxidized	oxidized	rotten egg
+metal  	chemical	industrial chemical	industrial chemical	industrial chemical
+olive oil 	chemical	industrial chemical	industrial chemical	hydrocarbon
+oxidized  	chemical	oxidized	oxidized	oxidized
+pharmaceutical	chemical	pharmaceutical chemical	pharmaceutical chemical	pharmaceutical chemical
+phenol  	chemical	pharmaceutical chemical	pharmaceutical chemical	phenols
+potato  	chemical	oxidized	oxidized	potato
+pyrazine  	chemical	industrial chemical	industrial chemical	
+reduced  	chemical	oxidized	oxidized	reduced
+reduction  	chemical	oxidized	oxidized	reduced
+rubber  	chemical	industrial chemical	industrial chemical	rubber
+rum  	chemical	industrial chemical	industrial chemical	alcohol
+solvent  	chemical	industrial chemical	industrial chemical	solvent
+sulfur  	chemical	industrial chemical	industrial chemical	sulfur
+varnish	chemical	industrial chemical	industrial chemical	varnish
+vinegar	chemical	oxidized	oxidized	vinegar
+water  	chemical	chemical	chemical	chemical
+burned milk 	empyreumatic	smoke or tobacco	smoke or tobacco	smoke
+burned pepper 	empyreumatic	smoke or tobacco	smoke or tobacco	smoke
+burnt  	empyreumatic	smoke or tobacco	smoke or tobacco	smoke
+burnt caramel	empyreumatic	smoke or tobacco	smoke or tobacco	smoke
+burnt wood 	empyreumatic	smoke or tobacco	smoke or tobacco	smoke
+caramel  	empyreumatic	cocoa or caramel	cocoa or caramel	caramel
+caramelised apple	empyreumatic	cocoa or caramel	cocoa or caramel	caramel
+chocolate  	empyreumatic	cocoa or caramel	cocoa or caramel	black chocolate
+chocolate milk	empyreumatic	cocoa or caramel	cocoa or caramel	milk chocolate
+cigar  	empyreumatic	smoke or tobacco	smoke or tobacco	cigar box
+cocoa  	empyreumatic	cocoa or caramel	cocoa or caramel	cocoa
+coffee  	empyreumatic	cocoa or caramel	cocoa or caramel	coffee
+empyreumatic 	empyreumatic	empyreumatic	empyreumatic	empyreumatic
+grilled  	empyreumatic	cocoa or caramel	cocoa or caramel	roasted
+mocha  	empyreumatic	cocoa or caramel	cocoa or caramel	mocha
+roasted  	empyreumatic	cocoa or caramel	cocoa or caramel	roasted
+smoked  	empyreumatic	smoke or tobacco	smoke or tobacco	smoke
+smoked vegetal 	empyreumatic	smoke or tobacco	smoke or tobacco	smoke
+soot  	empyreumatic	smoke or tobacco	smoke or tobacco	smoke
+tar  	empyreumatic	smoke or tobacco	smoke or tobacco	tar
+toasted  	empyreumatic	cocoa or caramel	cocoa or caramel	toast
+tobacco  	empyreumatic	smoke or tobacco	smoke or tobacco	tobacco
+actic	fermented	fermented	fermented	lactic acid
+ascecent  	fermented	fermented	fermented	fermented
+cheese  	fermented	fermented	fermented	
+lactic  	fermented	fermented	fermented	lactic acid
+lactic acid 	fermented	fermented	fermented	lactic acid
+milk  	fermented	fermented	fermented	milk
+yoghurt	fermented	fermented	fermented	fermented
+fermentation  	fermented 	fermented	fermented	fermented
+blue flowers 	floral	garden flower	blue flowers	blue flowers
+daisy	floral	garden flower	garden flower	daisy
+fern  	floral	floral	floral	floral
+floral  	floral	floral	floral	floral
+flower  	floral	floral	floral	floral
+gentian  	floral	floral	floral	floral
+geranium	floral	garden flower	garden flower	garden flower
+green fern 	floral	floral	floral	floral
+honey	floral	honey	honey	honey
+iris 	floral	garden flower	garden flower	iris
+ivy  	floral	garden flower	garden flower	garden flower
+jasmine  	floral	shrub flower	shrub flower	jasmine
+lavender  	floral	shrub flower	shrub flower	lavender
+lilac  	floral	shrub flower	shrub flower	lilac
+old wax 	floral	honey	honey	waxes
+peony  	floral	garden flower	garden flower	peony
+pink  	floral	shrub flower	shrub flower	rose
+polenta	floral			
+rose  	floral	shrub flower	shrub flower	rose
+violet 	floral	garden flower	garden flower	violet
+wax	floral	honey	honey	waxes
+white flowers 	floral	garden flower	garden flower	white flowers
+almond  	fruits	inshell dry fruits	inshell dry fruits	dried almond
+amylic  	fruits	amylic	amylic	amylic
+apple  	fruits	fresh fruits	fresh fruits	apple
+apricot  	fruits	fresh fruits	fresh fruits	apricot
+banana  	fruits	amylic	amylic	banana
+bergamot	fruits	citrus fruits	citrus fruits	bergamot
+black currant 	fruits	black fruits	fresh black fruits	black currant
+black currant candy	fruits	black fruits		
+black currant liqueur	fruits	black fruits	ripe or cooked black fruits	ripe or cooked black fruits
+black fruit yoghurt	fruits	black fruits	ripe or cooked black fruits	compote
+black fruits 	fruits	black fruits	black fruits	black fruits
+blackberry	fruits	black fruits	fresh black fruits	blackberries
+blackberry paste	fruits	black fruits	ripe or cooked black fruits	compote
+blackcurrant buds 	fruits	black fruits	ripe or cooked black fruits	ripe or cooked black fruits
+blackcurrant jam	fruits	black fruits	ripe or cookes black fruits	jam
+blackcurrant paste 	fruits	black fruits	ripe or cooked black fruits	compote
+blackcurrant syrup 	fruits	black fruits	ripe or cooked black fruits	ripe or cooked black fruits
+blueberry  	fruits	black fruits	fresh black fruits	blueberries
+brandy  	fruits	ripe or cooked fruits	ripe or cooked fruits	ripe or cooked fruits
+candied citrus 	fruits	citrus fruits	citrus fruits	citrus fruits
+candied fruit 	fruits	ripe or cooked fruits	ripe or cooked fruits	ripe or cooked fruits
+candy cherry 	fruits	red fruits	ripe or cooked red fruits	
+candy raspberry	fruits	red fruits	ripe or cooked red fruits	compote
+caramelized  and cooked raspberries 	fruits	ripe or cooked red fruits	ripe or cooked red fruits	ripe or cooked red fruits
+caramelized cooked cherries	fruits	ripe or cooked red fruits	ripe or cooked red fruits	ripe or cooked red fruits
+cherry	fruits	red fruits	fresh red fruits	cherry
+cherry brandy 	fruits	red fruits	ripe or cooked red fruits	cherry brandy
+citrus  	fruits	citrus fruits	citrus fruits	citrus fruits
+coconut  	fruits	inshell dry fruits	inshell dry fruits	coconut
+compote	fruits	ripe or cooked fruits	ripe or cooked fruits	compote
+concentrated red fruit	fruits	ripe or cooked red fruits	ripe or cooked red fruits	compote
+cooked black currant 	fruits	black fruits	ripe or cooked black fruits	ripe or cooked black fruits
+cooked black fruits	fruits	black fruits	ripe or cooked black fruits	ripe or cooked black fruits
+cooked blackberries	fruits	black fruits	ripe or cooked black fruits	compote
+cooked cherry 	fruits	ripe or cooked fruits	ripe or cooked fruits	ripe or cooked fruits
+cooked fruit 	fruits	ripe or cooked fruits	ripe or cooked fruits	ripe or cooked fruits
+cooked red berries	fruits	red fruits	ripe or cooked red fruits	ripe or cooked red fruits
+cooked red fruit	fruits	red fruits	ripe or cooked red fruits	ripe or cooked red fruits
+cooked strawberries 	fruits	ripe or cooked red fruits	ripe or cooked red fruits 	compote
+cream of blackcurrant	fruits	black fruits	ripe or cooked black fruits	compote
+currant  	fruits	red fruits	fresh red fruits	currant
+dry apricot 	fruits	dried fruits	dried fruits	dried apricots
+dry fig	fruits	dried fruits	dried fruits	dried figs
+dry fruits 	fruits	dried fruits	dried fruits	prune
+dry fruits 	fruits	dried fruits	dried fruits	dried fruits
+english candy 	fruits	amylic	amylic	english candies
+exotic  	fruits	exotic fruits	exotic fruits	exotic fruits
+exotic fruit 	fruits	exotic fruits	exotic fruits	exotic fruits
+exotic fruits	fruits	exotic fruits	exotic fruits	pineapple
+fig  	fruits	fresh fruits	fresh fruits	fresh fruits
+fresh black currant	fruits	black fruits	fresh black fruits	black currant
+fresh blackberrie	fruits	black fruits	fresh black fruits	blackberries
+fresh cherry 	fruits	red fruits	fresh red fruits	cherry
+fresh citrus 	fruits	citrus fruits	citrus fruits	citrus fruits
+fresh fruit 	fruits	fresh fruits	fresh fruits	fresh fruits
+fresh red fruit	fruits	red fruits	fresh red fruits	fresh red fruits
+fruit  	fruits	fruits	fruits	fruits
+fruit paste 	fruits	ripe or cooked fruits	ripe or cooked fruits	compote
+fruit yoghurt	fruits	ripe or cooked fruits		
+Grand Marnier 	fruits	citrus fruits	citrus fruits	orange
+granny apple 	fruits	fresh fruits	fresh fruits	apple
+grape	fruits	dried fruits	dried fruits	grapes
+grapefruit  	fruits	citrus fruits	citrus fruits	grapefruit
+grapefruit zest 	fruits	fruits	citrus fruits	grapefruit
+green apple 	fruits	fresh fruits	fresh fruits	apple
+green fruit 	fruits	fresh fruits	fresh fruits	fresh fruits
+grenadine	fruits	red fruits	fresh red fruits	grenadine
+hazelnut  	fruits	inshell dry fruits	inshell dry fruits	hazelnut
+isoamyl acetate 	fruits	amylic	amylic	isoamyl acetate
+jam  	fruits	ripe or cooked fruits	ripe or cooked fruits	jam
+jam berries	fruits	fresh fruits	ripe or cooked  fruits	jam
+jam fruit	fruits	ripe or cooked fruits	ripe or cooked fruits	jam
+kirch cherry	fruits	red fruits	ripe or cooked red fruits	compote
+kirsch cherry 	fruits	red fruits	ripe or cooked red fruits	compote
+kumquat  	fruits	citrus fruits	citrus fruits	citrus fruits
+lemon	fruits	citrus fruits	citrus fruits	lemon
+lime  	fruits	citrus fruits	citrus fruits	lime
+litchi  	fruits	exotic fruits	exotic fruits	litchi
+malabar  	fruits	red fruits	fresh red fruits	strawberry
+mandarin  	fruits	citrus fruits	citrus fruits	mandarin
+mango  	fruits	exotic fruits	exotic fruits	mango
+marshmallow strawberry 	fruits	red fruits		
+nut  	fruits	inshell dry fruits	inshell dry fruits	nuts
+orange  	fruits	citrus fruits	citrus fruits	orange
+orange juice	fruits	citrus fruits	citrus fruits	citrus fruits
+passion fruit 	fruits	exotic fruits	exotic fruits	passion fruits
+peach  	fruits	fresh fruits	fresh fruits	peach
+pear  	fruits	fresh fruits	fresh fruits	fresh fruits
+pear  	fruits	fresh fruits	fresh fruits	pear
+pineapple  	fruits	exotic fruits	exotic fruits	pineapple
+plum  	fruits	fresh fruits	fresh fruits	plum
+plum brandy 	fruits	ripe or cooked fruits	ripe or cooked fruits	ripe or cooked fruits
+prune  	fruits	dried fruits	dried fruits	prune
+prune brandy 	fruits	dried fruits	dried fruits	dried fruits
+quince  	fruits	fresh fruits	fresh fruits	quince
+raspberry  	fruits	red fruits	fresh red fruits	raspberry
+raspberry brandy 	fruits	red fruits	ripe or cooked red fruits	ripe or cooked red fruits
+raspberry candy 	fruits	red fruits		
+raspberry syrup	fruits	red fruits	ripe or cooked red fruits	compote
+red berries 	fruits	red fruits	fresh red fruits	fresh red fruits
+red cherry 	fruits	red fruits	fresh red fruits	cherry
+red currant 	fruits	red fruits	fresh red fruits	currant
+red fruits 	fruits	red fruits	red fruits	red fruits
+rhubarb  	fruits	citrus fruits	citrus fruits	citrus fruits
+ripe fruit	fruits	ripe or cooked fruits	ripe or cooked fruits	ripe or cooked fruits
+ripe grapes 	fruits	ripe or cooked fruits	ripe or cooked fruits	ripe or cooked fruits
+ripe raspberry 	fruits	red fruits	ripe or cooked red fruits	compote
+ripe red fruits	fruits	red fruits	ripe or cooked red fruits	ripe or cooked red fruits
+stewed  red fruit 	fruits	red fruits	ripe or cooked red fruits	compote
+stewed apple 	fruits	ripe or cooked fruits	ripe or cooked fruits	compote
+stewed strawberry 	fruits	red fruits	ripe or cooked red fruits	compote
+stone fruit 	fruits	fresh fruits	fresh fruits	fresh fruits
+strawberry  	fruits	red fruits	fresh red fruits	strawberry
+strawberry jam 	fruits	red fruits	ripe or cooked red fruits	jam
+strawberry syrup	fruits	red fruits	ripe or cooked red fruits	compote
+thiols  	fruits	citrus fruits	citrus fruits	citrus fruits
+tropical fruit	fruits	fresh fruits	fresh fruits	fresh fruits
+walnuts  	fruits	dried fruits	dried fruits	nuts
+white fruits 	fruits	fresh fruits	fresh fruits	pear
+white fruits 	fruits	fresh fruits	fresh fruits	fresh fruits
+yellow fruits	fruits	dried fruits	dried fruits	prune
+yellow fruits	fruits	fresh fruits	fresh fruits	apricot
+zest orange 	fruits	citrus fruits	citrus fruits	orange
+chalk  	mineral	mineral	mineral	chalk
+iodine  	mineral	mineral	mineral	iodine
+pencil	mineral	mineral	mineral	pencil
+mineral 	mineral 	mineral 	mineral 	mineral 
+anise  	spicy	spices dessert	spices dessert	anise
+berries  	spicy	berries	berries	berries
+bitter almonds 	spicy	spices dessert	spices dessert	spices dessert
+caraway  	spicy	oriental	oriental	cumin
+cardamom  	spicy	oriental	oriental	cardamom
+cinnamon  	spicy	spices dessert	spices dessert	cinnamon
+clove  	spicy	spices dessert	spices dessert	clove
+cooked pepper	spicy	berries	berries	pepper
+curry  	spicy	oriental	oriental	curry
+ginger  	spicy	oriental	oriental	ginger
+green pepper 	spicy	berries	berries	green pepper
+licorice  	spicy	spices dessert	spices dessert	licorice
+nutmeg	spicy	oriental	oriental	nutmeg
+pepper  	spicy	berries	berries	pepper
+ripe pepper 	spicy	berries	berries	pepper
+spices  	spicy	spicy	spicy	spicy
+vanilla  	spicy	spices dessert	spices dessert	vanilla
+mushroom  	undergrowth	mushroom	mushroom	mushroom
+damson  	undergrowth	moist soil	moist soil	damp earth
+earthy  	undergrowth	moist soil	moist soil	damp earth
+fungus  	undergrowth	mushroom	mushroom	mushroom
+humus  	undergrowth	moist soil	moist soil	humus
+moldy  	undergrowth	mushroom	mushroom	moldy
+musty  	undergrowth	mushroom	mushroom	moldy
+undergrowth  	undergrowth	undergrowth	undergrowth	undergrowth
+wet peel 	undergrowth	moist soil	moist soil	rotten
+asparagus  	vegetal	green vegetables	green vegetables	asparagus
+beans  	vegetal	green vegetables	green vegetables	green vegetables
+beets  	vegetal	green vegetables	green vegetables	green vegetables
+bell pepper 	vegetal	fresh vegetal	fresh vegetal	bell pepper
+black olive 	vegetal	green vegetables	green vegetables	green vegetables
+celery	vegetal	green vegetables	green vegetables	green vegetables
+chard 	vegetal	green vegetables	green vegetables	green vegetables
+cooked onions 	vegetal	vegetal	vegetal	vegetal
+cooked spinach 	vegetal	green vegetables	green vegetables	green vegetables
+cooked vegetal 	vegetal	vegetal	vegetal	vegetal
+cut grass 	vegetal	fresh vegetal	fresh vegetal	cut grass
+dry grass 	vegetal	dry vegetal	dry  vegetal	dry grass
+dry hay 	vegetal	dry vegetal	dry vegetal	hay
+dry laurel 	vegetal	dry vegetal	dry vegetal	dry vegetal
+dry vegetal 	vegetal	dry vegetal	dry vegetal	dry vegetal
+eucalyptus  	vegetal	infusion plants	infusion plants	eucalyptus
+fennel  	vegetal	green vegetables	green vegetables	fennel
+fresh grass 	vegetal	fresh vegetal	fresh vegetal	grass
+fresh vegetal 	vegetal	fresh vegetal	fresh vegetal	fresh vegetal
+garlic  	vegetal	fresh vegetal	fresh vegetal	fresh vegetal
+garrigue  	vegetal	vegetal	vegetal	vegetal
+grass  	vegetal	fresh vegetal	fresh vegetal	grass
+green  	vegetal	fresh vegetal	fresh vegetal	grass
+green bean 	vegetal	green vegetables	green vegetables	green vegetables
+green pepper	vegetal	green vegetables	green vegetables	pepper
+green pepper	vegetal	green vegetables	green vegetables	green vegetables
+green tea 	vegetal	green vegetables	green vegetables	green vegetables
+green vegetal	vegetal	fresh Vegetal	fresh Vegetal	herbaceous
+greenness  	vegetal	fresh vegetal	fresh vegetal	grass
+herbaceous  	vegetal	fresh vegetal	fresh vegetal	herbaceous
+lawn  	vegetal	fresh vegetal	fresh vegetal	grass
+lettuce	vegetal	green vegetables	green vegetables	green vegetables
+menthol  	vegetal	infusion plants	infusion plants	spearmint
+oil  	vegetal	green vegetables	green vegetables	green vegetables
+paper  	vegetal	vegetal	vegetal	vegetal
+peas	vegetal	green vegetables	green vegetables	green vegetables
+pyrazine  	vegetal	green vegetables	green vegetables	pepper
+ratatouille  	vegetal	green vegetables	green vegetables	green vegetables
+red pepper 	vegetal	green vegetables	green vegetables	pepper
+red pepper 	vegetal	green vegetables	green vegetables	green vegetables
+salad  	vegetal	green vegetables	green vegetables	green vegetables
+tea  	vegetal	dry vegetal	dry vegetal	tea
+tomato  	vegetal	green vegetables	green vegetables	green vegetables
+tomato leaf 	vegetal	green vegetables	green vegetables	green vegetables
+vegetal  	vegetal	vegetal	vegetal	vegetal
+wet grass 	vegetal	fresh vegetal	fresh vegetal	wet grass
+hay  	vegtal	dry vegetal	dry vegetal	hay
+cedar  	woody	woody	woody	cedar
+dry wood 	woody	woody	woody	woody
+fresh wood 	woody	woody	woody	woody
+old wood 	woody	woody	woody	woody
+wet wood 	woody	woody	woody	woody
+woody	woody	woody	woody	woody
+acidulous candies 				
+butter  				
+cake  				
+cane sugar				
+confit pepper 				
+dusty  				
+egg  				
+moss  				
+oil (pétrolé) 				
+semolina  				

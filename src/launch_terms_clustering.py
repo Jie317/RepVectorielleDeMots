@@ -70,8 +70,7 @@ def get_model_names(sup_dir):
 	print '\nRetrieving model names >>>>>>'
 	mns = []
 	m_dirs = glob.glob('%s*/' % sup_dir)
-	for n in m_dirs: 
-		mns.append(n.replace(sup_dir,'')[:-1])
+	for n in m_dirs: mns.append(n.replace(sup_dir,'')[:-1])
 	print 'Model names:', mns
 	return mns
 
@@ -80,8 +79,7 @@ def get_term_frequency(terms_path):
 	t_f = {} # terms are keys and frequencies are values
 	with open(terms_path) as term_f:
 		term_f.readline()
-		for l in term_f: 
-			t_f[l.split(',')[0]] = int(l.split(',')[1])
+		for l in term_f: t_f[l.split(',')[0]] = int(l.split(',')[1])
 	print 'Total terms:',sum(t_f.itervalues()),'Unique terms:',len(t_f)
 	return t_f
 

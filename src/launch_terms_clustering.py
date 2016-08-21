@@ -31,7 +31,11 @@ def tensorflow_k_means_cluatering(points_list, K, MAX_ITERS): # return clusterin
 	start = time.time()
 	N = len(points_list)
 	dims = len(points_list[0])
+<<<<<<< HEAD
 	points = tf.constant(points_list)
+=======
+	points = tf.Variable(points_list)
+>>>>>>> d82aa855e9b0be4231b8c9cce696543432f2cf78
 	cluster_assignments = tf.Variable(tf.zeros([N], dtype=tf.int64))
 	#  Initialization of the centroids (could do better)
 	centroids = tf.Variable(tf.slice(points, [0,0], [K,dims]))
@@ -121,11 +125,19 @@ def main(args):
 	t_f = get_term_frequency(terms_path)
 
 	for m in mns:
+<<<<<<< HEAD
 		print '\n\n>>>>> Starting model ', m
 		[N, dims, points] = get_points(models_dir, m, t_f)
 		[centers, assignments, iters, time] = tensorflow_k_means_cluatering(points, K, MAX_ITERS)
 		print ('\nFor model:%s\nFound in %.2f seconds' % (m, time)), iters, 'iterations'
 		print 'Centroids:\n', centers
+=======
+		print '\n>>>>> Starting model ', m
+		[N, dims, points] = get_points(models_dir, m, t_f)
+		[centers, assignments, iters, time] = tensorflow_k_means_cluatering(points, K, MAX_ITERS)
+		print ('For model:%s\nFound in %.2f seconds' % (m, time)), iters, 'iterations'
+		print 'Centroids:', centers
+>>>>>>> d82aa855e9b0be4231b8c9cce696543432f2cf78
 		#print 'Cluster assignments:', assignments
 
 if __name__ == '__main__':

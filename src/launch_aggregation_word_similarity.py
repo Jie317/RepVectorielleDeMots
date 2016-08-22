@@ -145,72 +145,45 @@ def end_mark(dirName):
 	os.rename(dirName, dirName[:-1]+timestr+'_complete/')
 
 
-if(len(sys.argv) < 8):
-	print help_s
-	exit()
-	
-sample_data_path = '../input_simBenchmark/wordsim_combined.tab'	
-embeddings_dir = '../schnabel_embeddings/'	
-results_dir = '../results/'
-skip = False 
-mode = 'w+'
-it = 2000
-alpha = 0.02
-hidden_dim = 3
+def main(args): 
+	if(len(args) < 8):
+		print help_s
+		exit()
 
-if sys.argv[1] != '0': sample_data_path = sys.argv[1]
-if sys.argv[2] != '0': embeddings_dir = sys.argv[2]
-if sys.argv[3] != '0': 
-	timestamped_results_dir = sys.argv[3]
-	mode = "a+"
-	skip_step_1 = True
-prefix_dir = sys.argv[4]+'_'
-if sys.argv[5] != '0': it = int(sys.argv[5])
-if sys.argv[6] != '0': alpha = float(sys.argv[6])
-if sys.argv[7] != '0': hidden_dim = int(sys.argv[7])
+	sample_data_path = '../input_simBenchmark/wordsim_combined.tab'	
+	embeddings_dir = '../schnabel_embeddings/'	
+	results_dir = '../results/'
+	skip = False 
+	mode = 'w+'
+	it = 2000
+	alpha = 0.02
+	hidden_dim = 3
 
+	if args[1] != '0': sample_data_path = args[1]
+	if args[2] != '0': embeddings_dir = args[2]
+	if args[3] != '0': 
+		timestamped_results_dir = args[3]
+		mode = "a+"
+		skip_step_1 = True
+	prefix_dir = args[4]+'_'
+	if args[5] != '0': it = int(args[5])
+	if args[6] != '0': alpha = float(args[6])
+	if args[7] != '0': hidden_dim = int(args[7])
 
-print '\n>>>>>>>>>>>> Starting training and test >>>>>>>>>>>'
-print "Local time: "+time.strftime("%c")
-print '\nInput benchmark file;\n', sample_data_path
-if not os.path.exists('../results/'): os.makedir('../results/')
+	print '\n>>>>>>>>>>>> Starting training and test >>>>>>>>>>>'
+	print "Local time: "+time.strftime("%c")
+	print '\nInput benchmark file:\n', sample_data_path
+	if not os.path.exists('../results/'): os.makedir('../results/')
 
-if not skip: timestamped_results_dir = get_sample_matrix( results_dir, prefix_dir, sample_data_path, embeddings_dir)
+	if not skip: timestamped_results_dir = get_sample_matrix(results_dir, prefix_dir, sample_data_path, embeddings_dir)
 
-start_training_kfCV(timestamped_results_dir, it=it, alpha=alpha, hidden_dim=hidden_dim)
+	start_training_kfCV(timestamped_results_dir, it=it, alpha=alpha, hidden_dim=hidden_dim)
 
-if not skip: end_mark(timestamped_results_dir)
+	if not skip: end_mark(timestamped_results_dir)
 
-print "\n\nLocal time: "+time.strftime("%c")
-print '<<<<<<<<<<<< Ended neuron unit training and test <<<<<<<<<<<<<\n'
+	print "\n\nLocal time: "+time.strftime("%c")
+	print '<<<<<<<<<<<< Ended neuron unit training and test <<<<<<<<<<<<<\n'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
+if __name__ == '__main__':
+	args = sys.argv
+	main(args)

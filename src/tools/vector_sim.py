@@ -166,7 +166,7 @@ else: # compute all similarities
 				continue
 				
 			
-			vec_word_b = l.strip().split()
+			vec_word_b = l.split()
 			label_word_b = vec_word_b[0]
 			vec_word_b = loadVectorRepresentationInner(vec_word_b, vec_format, vec_size)
 			sim = cosine_similarity(vec_word, vec_word_b)

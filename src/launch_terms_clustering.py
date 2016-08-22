@@ -1,14 +1,14 @@
 #! usr/bin/python
 import sys
 import time
-import glob
 import random
 import tensorflow as tf
 import numpy as np
+from tools.neural_network import cosine_similarity, end_mark, get_model_names, creat_result_folder
 
 help_s = '''
 
-A script to cluster the terms concerned about the human evaluation of scent of the wine products.
+A script to cluster the descriptors of the scent of wine products. The algorithm used here is K-means clustering and was implemented on Tensorflow.
 
 Inputs:
 
@@ -23,6 +23,9 @@ Inputs:
 	
 	[4] max iterations in the K means clustering procedure
 	put 0 for default value: 1000
+
+	[5] prefix of the result folder name
+	any string you like to mark the folder
 
 	
 Version 0.1 by Jie He @LGI2P, EMA
@@ -64,16 +67,7 @@ def tensorflow_k_means_cluatering(points_list, init_cs, K, MAX_ITERS): # return 
 		[changed, _] = sess.run([did_assignments_change, do_updates])
 	[centers, assignments] = sess.run([centroids, cluster_assignments])
 	end = time.time()
-
 	return [centers, assignments, iters, end-start]
-
-def get_model_names(sup_dir):
-	print '\nRetrieving model names >>>>>>'
-	mns = []
-	m_dirs = glob.glob('%s*/' % sup_dir)
-	for n in m_dirs: mns.append(n.replace(sup_dir,'')[:-1])
-	print 'Model names:', mns
-	return mns
 
 def get_term_frequency(terms_path):
 	print '\nRetrieving terms and frequencies >>>>>>'
@@ -83,7 +77,6 @@ def get_term_frequency(terms_path):
 		for l in term_f: t_f[l.split(',')[0]] = int(l.split(',')[1])
 	print 'Total terms:',sum(t_f.itervalues()),'Unique terms:',len(t_f)
 	return t_f
-
 
 def get_points_and_init_centroids(models_dir, m, t_f, K):
 	print '\nRetrieving points(vectors) and initial random centroids >>>>>>'
@@ -101,24 +94,39 @@ def get_points_and_init_centroids(models_dir, m, t_f, K):
 				del t_f_rep[t]
 	ts_valid = t_vs.keys()
 	random.shuffle(ts_valid)
-	for ct in ts_valid[:K]: init_cs.append(t_vs[ct])
+	init_c_terms = ts_valid[:K]
+	for ct in init_c_terms: init_cs.append(t_vs[ct])
 	print 'Total points(vectors):', len(ps), ' Vector dimension:', len(ps[0])
-	print '\nTerms not found:\n', t_f_rep, '\n\nInitial random centroids:', ts_valid[:K]
+	print '\nTerms not found:\n', t_f_rep, '\n\nInitial random centroids:', init_c_terms
+	return [len(ps), len(ps[0]), ps, init_cs, init_c_terms]
 
-
-	return [len(ps), len(ps[0]), ps, init_cs]
-
-def find_concepts(vecs):
-	for vec in vecs:
-		pass # calculate sims and sort then get the biggest one
-
+def find_max_sim(m_dir, m, vecs):
+	print '\nFinding terms with maximal similarity in model %s >>>>>>' % m
+	max_sim_terms = []
+	max_sims = []
+	with open('%s%s/%s_size_50.embeddings.vec' % (m_dir, m, m)) as in_vec:
+		for i,vec_a in enumerate(vecs):
+			print 'Processing point', (i+1)
+			similarities = {} # the key is vec_b and the value is its sim with current vec_a
+			best_sim = 0
+			best_sim_label = None
+			in_vec.seek(0) 
+			for l in in_vec: 
+				similarities[l.split()[0]] = cosine_similarity(vec_a, [float(v) for v in l.split()[1:]])
+			max_sim_term = (sorted(similarities, key=similarities.get, reverse=True))[0]
+			max_sim_terms.append(max_sim_term)
+			max_sims.append(similarities[max_sim_term])
+	return [max_sim_terms, max_sims]
 
 
 def main(args):
-	if len(args) < 5:
+
+
+	if len(args) < 6:
 		print help_s
 		exit()
 
+	# 0 define parameters
 	terms_path = '../input_terms_for_clustering/terms_wines_frequences.csv'
 	models_dir = '../schnabel_embeddings/'
 	K = 5
@@ -128,17 +136,62 @@ def main(args):
 	if args[2] != '0': models_dir = args[2]
 	if args[3] != '0': K = int(args[3])
 	if args[4] != '0': MAX_ITERS = int(args[4])
+	prefix_dir_name = args[5]
 
+
+	print '\n>>>>>>>>>>>> K-means clustering >>>>>>>>>>>'
+	print "Local time:", time.strftime("%c")
+	print '\nInput benchmark file:\n', terms_path
+
+	# 1 retrieve the centers (the centroid points given by vectors)
 	mns = get_model_names(models_dir)
 	t_f = get_term_frequency(terms_path)
+	results_dir = creat_result_folder(prefix_dir_name)
 
+	ms_cs = {} # the keys are model names and the values are the centers
+	init_c_terms_ms = [] # initial center terms for each model
 	for i,m in enumerate(mns):
 		print '\n\n>>>>> Starting model %d: %s' % (i, m)
-		[N, dims, points, init_centers] = get_points_and_init_centroids(models_dir, m, t_f, K)
-		[centers, assignments, iters, time] = tensorflow_k_means_cluatering(points, init_centers, K, MAX_ITERS)
-		print ('\nFor model:%s\nFound in %.2f seconds' % (m, time)), iters, 'iterations'
-		print 'Centroid matrix size:', centers.shape
+		[N, dims, points, init_c_points, init_c_terms] = get_points_and_init_centroids(models_dir, m, t_f, K)
+		[centers, assignments, iters, runtime] = tensorflow_k_means_cluatering(points, init_c_points, K, MAX_ITERS)
+		print ('\Starting K-means clustering for model:%s\nFound in %.2f seconds' % (m, runtime)), iters, 'iterations'
+		print 'Centroid matrix size and type:', centers.shape, type(centers)
+		ms_cs[m] = centers
+		init_c_terms_ms.append(init_c_terms)
 		#print 'Cluster assignments:', assignments
+
+		# save center matrix
+		fname = results_dir+'centers.mat'
+		np.savetxt(fname, centers, delimiter='\t', comments='Centers for %s' % m, fmt='%.5f')
+
+
+	# 2 find the terms which have the maximal similatrities with these centroid points
+	clustering_result = [] # store the center terms and their maximal similarities
+	for m in ms_cs:
+		clustering_result.append(find_max_sim(models_dir, m, ms_cs[m]))
+
+
+	# 3 establish conclusion table
+	header = ['Model'] + ['Center %d' % (i+1) for i in xrange(K)]
+	row_header = [[m] for m in mns]
+	center_terms = [row[0] for row in clustering_result]
+	term_sims = [row[1] for row in clustering_result]
+	table_terms = np.vstack((header, np.hstack((row_header, center_terms))))
+	table_sims = np.vstack((header, np.hstack((row_header, term_sims))))
+	table_init_c_terms_ms = np.vstack((header, np.hstack((row_header, init_c_terms_ms))))
+
+
+	# 4 save to csv result file
+	with open(results_dir+'terms_clustering_results.csv', 'a+') as re_p:
+		np.savetxt(re_p, np.array(table_terms), delimiter='\t', header='\n>>>>>>>>\nNew launching local time %s\nCenters' % time.strftime('%c'), fmt='%s')
+		np.savetxt(re_p, np.array(table_sims), delimiter='\t', header='\nSimilarities', fmt='%s')
+		np.savetxt(re_p, np.array(table_init_c_terms_ms), delimiter='\t', header='\nInitial center terms', fmt='%s')
+
+
+	# end
+	end_mark(results_dir)
+	print "\n\nLocal time: "+time.strftime("%c")
+	print '<<<<<<<<<<<< Ended terms clustering task <<<<<<<<<<<<<\n'
 
 
 

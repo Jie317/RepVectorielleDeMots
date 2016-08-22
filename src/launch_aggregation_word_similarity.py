@@ -19,7 +19,7 @@ A script to aggregate the models to perform the word similarity task. The weight
 Inputs:
 
 	[1]* sample data path (pairs and their human-evaluated similarities)
-	put 0 if using the default test data: "../input_simBenchmark/wordsim_combined.tab" 
+	put 0 if using the default test data: "../input_sim_benchmarks/wordsim_combined.tab" 
 	
 	[2] directory where all the models locate (where the folders "tscca phca ..." locate) 
 	put 0 if using the default directory: "../schnabel_embeddings/"
@@ -150,7 +150,7 @@ def main(args):
 		print help_s
 		exit()
 
-	sample_data_path = '../input_simBenchmark/wordsim_combined.tab'	
+	sample_data_path = '../input_sim_benchmarks/wordsim_combined.tab'	
 	embeddings_dir = '../schnabel_embeddings/'	
 	results_dir = '../results/'
 	skip = False 

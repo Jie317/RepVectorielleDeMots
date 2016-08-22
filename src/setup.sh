@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 # Setup for the whole project
 
 if [ "$(id -u)" != "0" ]; then

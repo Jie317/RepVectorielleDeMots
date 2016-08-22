@@ -35,10 +35,10 @@ Inputs:
 		put 00 to use Schnabel Embeddings ("../schnabel_embeddings/")
 		Attention: only when all the five models are available that the evaluation procedure will perform
 		
-		[3] Input terms/descriptors path
+		[3] input terms/descriptors path
 		put 0 for default setting: "../input_terms_descriptors/terme_au_concepts_merged_cleaned.tsv"
 				
-		[4] Prefix of the result directory name
+		[4] prefix of the result directory name
 		which together with the timestamp serves as the name of the result directory
 			
 

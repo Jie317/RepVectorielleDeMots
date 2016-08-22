@@ -1,5 +1,0 @@
-git init
-git pull origin master 
-git add *
-git commit -m 'debug clustering code'
-git push -u origin master 

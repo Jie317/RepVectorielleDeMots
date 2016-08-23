@@ -150,14 +150,16 @@ def main(args):
 
 	ms_cs = {} # the keys are model names and the values are the centers
 	init_c_terms_ms = [] # initial center terms for each model
+	iters_ms = [['Iterations']] # iterations to cluster
 	for i,m in enumerate(mns):
 		print '\n\n>>>>> Starting model %d: %s' % (i, m)
 		[N, dims, points, init_c_points, init_c_terms] = get_points_and_init_centroids(models_dir, m, t_f, K)
 		[centers, assignments, iters, runtime] = tensorflow_k_means_cluatering(points, init_c_points, K, MAX_ITERS)
-		print ('\Starting K-means clustering for model:%s\nFound in %.2f seconds' % (m, runtime)), iters, 'iterations'
+		print ('\Starting K-means clustering for model: %s\nFound in %.2f seconds' % (m, runtime)), iters, 'iterations'
 		print 'Centroid matrix size and type:', centers.shape, type(centers)
 		ms_cs[m] = centers
 		init_c_terms_ms.append(init_c_terms)
+		iters_ms.append([iters])
 		#print 'Cluster assignments:', assignments
 
 		# save center matrix
@@ -172,18 +174,20 @@ def main(args):
 
 
 	# 3 establish conclusion table
-	header = ['Model'] + ['Center %d' % (i+1) for i in xrange(K)]
-	row_header = [[m] for m in mns]
+	label = ['Model'] + ['Center %d' % (i+1) for i in xrange(K)] + ['Avg.']
+	row_label = [[m] for m in mns] + [['Avg.']]
 	center_terms = [row[0] for row in clustering_result]
 	term_sims = [row[1] for row in clustering_result]
-	table_terms = np.vstack((header, np.hstack((row_header, center_terms))))
-	table_sims = np.vstack((header, np.hstack((row_header, term_sims))))
-	table_init_c_terms_ms = np.vstack((header, np.hstack((row_header, init_c_terms_ms))))
+	term_sims_1 = np.hstack((term_sims, np.mean(term_sims, axis=1,keepdims=True)))
+	term_sims_mean = np.vstack((term_sims_1, np.mean(term_sims_1,axis=0, keepdims=True)))
+	table_clustered_terms = np.hstack((np.vstack((label[:-1], np.hstack((row_label[:-1], center_terms)))), iters_ms))
+	table_sims = np.vstack((label, np.hstack((row_label, term_sims_mean))))
+	table_init_c_terms_ms = np.vstack((label[:-1], np.hstack((row_label[:-1], init_c_terms_ms))))
 
 
 	# 4 save to csv result file
 	with open(results_dir+'terms_clustering_results.csv', 'a+') as re_p:
-		np.savetxt(re_p, np.array(table_terms), delimiter='\t', header='\n>>>>>>>>\nNew launching local time %s\nCenters' % time.strftime('%c'), fmt='%s')
+		np.savetxt(re_p, np.array(table_clustered_terms), delimiter='\t', header='\n>>>>>>>>\nNew launching local time %s\nCenters' % time.strftime('%c'), fmt='%s')
 		np.savetxt(re_p, np.array(table_sims), delimiter='\t', header='\nSimilarities', fmt='%s')
 		np.savetxt(re_p, np.array(table_init_c_terms_ms), delimiter='\t', header='\nInitial center terms', fmt='%s')
 

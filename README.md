@@ -20,11 +20,11 @@ The whole project is developed on Ubuntu 16.04 LTS (64-bit, Kernel: 4.7.1) and P
 To build the project environmemt, run with root the shell script `setup.sh` to install a set of dependencies and packages.  If there is any error during the installation, please find in the shell script the name of the package and install it manually.
 
 ### Before continuing, several datasets should be prepared:
-* Corpus/corpora to computate the vector representations of words (a.k.a word embeddings), in plain text format. You can extract the corpus from wikipedia dump file using the shell script `launch\_corpus_extraction.sh`.
-* Existing word embeddings to evaluate (For all the embeddings, please concatenate the model's name as prefix with the name of its vocabulary file and vector file, for example, change the file name `size\_50.embeddings.voc` to `hpca\_size_50.embeddings.voc` ).
-* Term-discriptor file to evaluate the embeddings, tsv format. The built-in dataset already exists in the default input folder `input\_terms_discriptors`. Please keep the same form if you want to replace the file with another one.
-* Benchmarks of word similarity. Already exsist in the default input folder  `input_sim\_benchmarks`. Please keep the same form if you want to replace the file with another one.
-* Descriptor file of wine products for clustering task. Already exsists in the default input folder  `input\_terms\_for_clustering`.  Please keep the same form if you want to replace the file with another one.
+* Corpus/corpora to computate the vector representations of words (a.k.a word embeddings), in plain text format. You can extract the corpus from wikipedia dump file using the shell script `launch_corpus_extraction.sh`.
+* Existing word embeddings to evaluate (For all the embeddings, please concatenate the model's name as prefix with the name of its vocabulary file and vector file, for example, change the file name `size_50.embeddings.voc` to `hpca_size_50.embeddings.voc` ).
+* Term-discriptor file to evaluate the embeddings, tsv format. The built-in dataset already exists in the default input folder `input_terms_discriptors`. Please keep the same form if you want to replace the file with another one.
+* Benchmarks of word similarity. Already exsist in the default input folder  `input_sim_benchmarks`. Please keep the same form if you want to replace the file with another one.
+* Descriptor file of wine products for clustering task. Already exsists in the default input folder  `input_terms_for_clustering`.  Please keep the same form if you want to replace the file with another one.
 
 If you need these files, you can also find some of them at my [google drive](https://drive.google.com/open?id=0B-TRyz0akbbaeHpaUk5SN1cybW8 ). 
 
@@ -36,7 +36,7 @@ The arguments for this script are:
 * [4] prefix of the result directory name
 * Please note that for the computation of the model TSCCA, the settings are in the buil.xml file in the current folder. All the computations of embeddings have taken the default settings.
 
-Please run firstly the python script `launch\_computation\_and\_evaluation.py` without argument and then read the specific explanation of these arguments which appears next. Default arguments are provided to give examples about the format. Then run it again with arguments and check the results in the folder `results`. The computation of models can last a long time, for example, training a corpus with 400Mb cost 2 hours on a physical machine with `Intel® Core™ i5-4210M CPU @ 2.60GHz × 4`.
+Please run firstly the python script `launch_computation_and_evaluation.py` without argument and then read the specific explanation of these arguments which appears next. Default arguments are provided to give examples about the format. Then run it again with arguments and check the results in the folder `results`. The computation of models can last a long time, for example, training a corpus with 400Mb cost 2 hours on a physical machine with `Intel® Core™ i5-4210M CPU @ 2.60GHz × 4`.
 
 
 ## Step 2: perform the aggregation of model on the term evaluation task
@@ -45,7 +45,7 @@ The arguments for this script are:
 * [2] iteration number during the training
 * [3] learning rate during the training
 
-Please run firstly the python script `launch\_aggregation\_term_evaluation.py` without argument and then read the specific explanation of these arguments which appears next. Default arguments are available as examples but you can take them if you've checked their values. Then run it again with arguments and check the results in the folder `results`.
+Please run firstly the python script `launch_aggregation_term_evaluation.py` without argument and then read the specific explanation of these arguments which appears next. Default arguments are available as examples but you can take them if you've checked their values. Then run it again with arguments and check the results in the folder `results`.
 
 
 ## Step 3: perform the aggregation of model on the word similarity task
@@ -58,7 +58,7 @@ The arguments for this script are:
 * [6] learning rate during the 
 * [7] dimensions in the hidden layer
 
-Please run firstly the python script `launch\_aggregation\_word_similarity.py` without argument and then read the specific explanation of these arguments which appears next. Default arguments are provided to give examples about the form. Then run it again with arguments and check the results in the folder `results`.
+Please run firstly the python script `launch_aggregation_word_similarity.py` without argument and then read the specific explanation of these arguments which appears next. Default arguments are provided to give examples about the form. Then run it again with arguments and check the results in the folder `results`.
 
 ## Step 4: perform the terms clustering task
 The arguments for this script are:
@@ -68,6 +68,6 @@ The arguments for this script are:
 * [4] max iterations in the K means clustering procedure
 * [5] prefix of the result folder name
 
-Please run firstly the python script `launch\_terms_clustering.py` without argument and then read the specific explanation of these arguments which appears next. Default arguments are provided to give examples about the form. Then run it again with arguments and check the results in the folder `results`.
+Please run firstly the python script `launch_terms_clustering.py` without argument and then read the specific explanation of these arguments which appears next. Default arguments are provided to give examples about the form. Then run it again with arguments and check the results in the folder `results`.
 
 End of the documentation. If there is any problem, please contact me (jie.he@mines-ales.org).

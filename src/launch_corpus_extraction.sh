@@ -15,6 +15,8 @@ if [ -z "$3" ]; then
 		put 0 to extract sentences, put 1 to extract paragraphs
 
 		* Please note that the setting of key words in the filter is available in this script but can not be setted by argument. Please find the line which starts with the variable name FILTER to change the filter words. The backslash and pipe should be kept between two words.
+		
+		* Please note that this launching will take a very long time, up to 5 or 10 hours, depending on your machine.
 
 	Version 0.1 by Jie He @LGI2P, EMA
 

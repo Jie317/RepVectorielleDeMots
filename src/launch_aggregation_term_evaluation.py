@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#! /usr/bin/python
 import glob, time, sys, os
 import numpy as np
 from sklearn.cross_validation import KFold

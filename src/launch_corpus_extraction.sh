@@ -84,23 +84,26 @@ if [ $3 == 1 ]; then
 	echo "Apply the filter >>>"
 	echo -e "The filter is:\n\t"$FILTER
 	grep -w "$FILTER"  $mid1 > $mid1_extra 
- 	#rm $mid1
+ 	rm $mid1
 
 	echo "Detect sentences (One sentence per line) >>>"
 	python tools_extraction/sentenceDetector.py $mid1_extra $mid2
- 	#rm $mid1_extra
+ 	rm $mid1_extra
 
 	echo "Tokenize sentences >>>"
 	java -cp tools_extraction/stanford-corenlp.jar edu.stanford.nlp.process.PTBTokenizer -preserveLines $mid2 >  $mid3
- 	#rm $mid2
+ 	rm $mid2
 
 	echo "Remove punctuations >>>"
 	cat $mid3 | tr -d '[:punct:]' > $mid4
- 	#rm $mid3
+ 	rm $mid3
 
 	echo "Lowercase words and replace digits with 0s >>>"
 	./tools_extraction/preprocess -input-file $mid4 -output-file $mid5 -lower 1 -digit 1 -verbose 1 -threads 8 -gzip 0
- #rm $mid4
+	rm $mid4
+	
+	mv $mid5 $final
+ 	
 
 	
 fi

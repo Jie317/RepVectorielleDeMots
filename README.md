@@ -26,7 +26,7 @@ To build the project environmemt, run with root the shell script `setup.sh` to i
 * Benchmarks of word similarity. Already exsist in the default input folder  `input_sim_benchmarks`. Please keep the same form if you want to replace the file with another one.
 * Descriptor file of wine products for clustering task. Already exsists in the default input folder  `input_terms_for_clustering`.  Please keep the same form if you want to replace the file with another one.
 
-If you need these files, you can also find some of them at my [google drive](https://drive.google.com/open?id=0B-TRyz0akbbaeHpaUk5SN1cybW8 ). 
+If you need these files, you can also find some of them on my [google drive](https://drive.google.com/open?id=0B-TRyz0akbbaeHpaUk5SN1cybW8 ). 
 
 ## Step 1: perform the computation and evaluation of models
 The arguments for this script are:

@@ -71,3 +71,5 @@ The arguments for this script are:
 Please run firstly the python script `launch_terms_clustering.py` without argument and then read the specific explanation of these arguments which appears next. Default arguments are provided to give examples about the form. Then run it again with arguments and check the results in the folder `results`.
 
 If you are going to develop my source codes, please use something like [Sublime](https://www.sublimetext.com/3) to get tidy line wrap style. If there is any problem, please contact me (jie.he@mines-ales.org).
+
+All copyrihgt reserved to KID (LGI2P, NIMES)

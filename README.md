@@ -72,4 +72,4 @@ Please run firstly the python script `launch_terms_clustering.py` without argume
 
 If you are going to develop my source codes, please use something like [Sublime](https://www.sublimetext.com/3) to get tidy line wrap style. If there is any problem, please contact me (jie.he@mines-ales.org).
 
-All copyrihgt reserved to KID (LGI2P, NIMES)
+All copyright reserved to KID (LGI2P, NIMES)

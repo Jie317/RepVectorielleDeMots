@@ -1,3 +1,5 @@
+# Word Embeddings Evaluation
+
 ### This project has come out as an implementation of several methods to evaluate the performance of word vector representations during the internship at [LGI2P, EMA](http://lgi2p.mines-ales.fr/pages/equipe-de-recherche-kid-0) (Mentors: [Mr Sébastien Harispe](http://dblp.uni-trier.de/pers/hd/h/Harispe:S=eacute=bastien.html) and [Mr Jacky Montmain](https://www.researchgate.net/profile/Jacky_Montmain)), which consists of four parts:
 * 1) the computation of the five vector representations (word embeddings) and the evaluation of the models
 * 2) the aggregation of model on the term evaluation task

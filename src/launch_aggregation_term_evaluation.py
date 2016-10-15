@@ -3,6 +3,7 @@ import glob, time, sys, os
 import numpy as np
 from sklearn.cross_validation import KFold
 from tools.neural_network import simple_neural_network
+from tools.tflearn_neural_network import tflearn_DNN_training
 
 help_s = '''
 
@@ -23,7 +24,6 @@ Inputs:
 Version 0.1 by Jie He @LGI2P, EMA
 
 '''
-
 
 		
 def get_sm(level): # return sample matrix and concepts number
@@ -57,8 +57,20 @@ def get_sm(level): # return sample matrix and concepts number
 			else: sample_unit.append(0)
 			sample_items.append(sample_unit)
 	# get sample matrix
-	sm = [r[3:] for r in sample_items] 
-	return sm, len(voc_concepts)
+	sm_raw = [r[3:] for r in sample_items]
+
+	# convert to standard sample. 
+	sm_std = []
+	
+	cn = len(voc_concepts)
+	tn = len(voc_terms)
+	for i in xrange(tn):
+		sm_temp = sm_raw[i*cn:(i+1)*cn]
+		X = np.array(sm_temp, dtype='|S4').astype(np.float)[:, :-1]
+		X = X.ravel()
+		y = np.array(sm_temp, dtype='|S4').astype(np.float)[:, -1]
+		sm_std.append([X, y]) 
+	return sm_std, cn
 
 def write_sample_items_to_file(cn, sample_items): # return none	
 	fpa = details_dir+'Level_%d/samples.item' % level
@@ -71,7 +83,7 @@ def write_sample_items_to_file(cn, sample_items): # return none
 			output_samples.write('\n')
 
 def start_training_kfCV_for_TC_evalutation(level,k=3): # return weights matrix
-	kv = KFold(len(sm)/cn, n_folds=k, shuffle=True, random_state=None)
+	kv = KFold(len(sm), n_folds=k, shuffle=True, random_state=None)
 	count = 0
 	test = [] 
 	test_w = []
@@ -84,36 +96,40 @@ def start_training_kfCV_for_TC_evalutation(level,k=3): # return weights matrix
 		train_set = [] 
 		test_set = [] 
 		for tr in tr_index:
-			train_set += sm[tr*cn : (tr+1)*cn]
+			train_set.append(sm[tr])
 		for te in te_index:
-			test_set += sm[te*cn : (te+1)*cn]
-		X = np.array(train_set, dtype='|S4').astype(np.float)[:, :-1]
-		y = np.array(train_set, dtype='|S4').astype(np.float)[:, -1:]
-		
-		X_t = np.array(test_set, dtype='|S4').astype(np.float)[:, :-1]
-		y_t = np.array(test_set, dtype='|S4').astype(np.float)[:, -1:]	
+			test_set.append(sm[te]) 
 
- 		weights, ph0, ph1, ph2, ph3, ph4 = simple_neural_network(X, y, X_t, y_t, mns, it=it, alpha=alpha, hd=HIDDEN_DIM) ###### train the model and get the weights
- 		print "weights:\n",weights
+		X = np.array([r[0] for r in train_set])
+		y = np.array([r[1] for r in train_set])
+		
+	
+		X_t = np.array([r[0] for r in test_set])
+		y_t = np.array([r[1] for r in test_set])
+
+		weights = tflearn_DNN_training(X, y, mns)
+ 		#weights, _, _, _, _, _ = simple_neural_network(X, y, X_t, y_t, mns, it=it, alpha=alpha, hd=HIDDEN_DIM) ###### train the model and get the weights
+ 		
+ 		#print "weights:\n",weights
  		weights = normalize(weights) # rescale the weights by Frobenius Norm to make them comparable between the 4 levels
- 		print "weights rescaled:\n",weights
+ 		#print "weights rescaled:\n",weights
  		ws.append(weights.T[0].tolist()) # add "[0]" to convert the 2-d array into a 1-d array
 
  		# test with and without the trained weights
- 		test.append(test_TC_evaluation(X_t, y_t))
+ 		'''test.append(test_TC_evaluation(X_t, y_t))
  		for i,n in enumerate(mns):
- 			test_m[n].append(test_TC_evaluation(np.array(X_t[:,i]).reshape((len(X_t),1)),y_t))
- 		test_w.append(test_TC_evaluation(X_t, y_t, w=weights))
+ 			test_m[n].append(test_TC_evaluation(np.array(X_t[:,i]).reshape((len(X_t),1)),y_t))'''
+ 		#test_w.append(test_TC_evaluation(X_t, y_t, w=weights))
 
  	return ws, test, test_w, test_m
 		
-def test_TC_evaluation(X_t, y_t, w=None): # return test result (prediction ratio, or evaluation performance)
-	if w is None: w = [[1.] for n in range(len(X_t[0]))]
-	w_array = np.array(w)
-	correct_count = 0
-	print 'Weights in test:\n',w_array
-	#print 'X_t:\n',X_t
-	sum_sims = X_t.dot(w_array)
+def test_TC_evaluation(X_t, y_t, w=None): # return test result (prediction ratio, or evaluation performance)     
+	if w is None: w = [[1.] for n in range(len(X_t[0]))]     
+	w_array = np.array(w)    
+	correct_count = 0     
+	#print 'Weights in test:\n',w_array     
+	#print 'X_t:\n',X_t     
+	sum_sims = X_t.dot(w_array)     
 	#print 'Sum_sims:\n',sum_sims
 
 	for i in range(len(X_t)/cn):
@@ -173,7 +189,7 @@ for fpath in glob.glob(details_dir + 'Level_1/*term_concepts.sims'):
 	mns.append(model_name)
 
 wm = [] # weights matrix (4 levels)
-oprs = [] # original prediction accuracies (4 levels)
+oprs = [] # original prediction accuracies (4 levels) ############## Meaningless to calculate the averages for original predictions in each level
 prs = [] # prediction accuracies when applying trained weights (4 levels)
 oprms = {} # original prediction accuracies for each model (4 levels)
 
@@ -206,9 +222,9 @@ oprs_output = np.vstack((h_pr, np.hstack((h_row_pr,np.vstack((oprs,np.mean(oprs,
 prs_output = np.vstack((h_pr, np.hstack((h_row_pr,np.vstack((prs,np.mean(prs,axis=0)))))))
 g_re.write('\n>>>>>>>>>>>>>>>>\nTC evaluation task: local time %s\n' % time.strftime("%c"))
 np.savetxt(g_re, wm_output, delimiter='\t', header='>>>>>>>>Conclusion (it=%d,alpha=%.2f)\n>>>>Weight matrix (K=3)' % (it,alpha), fmt='%s')
-np.savetxt(g_re, oprs_output, delimiter='\t', header='\n>>>>Original Prediction Accuracy', fmt='%s')
+#np.savetxt(g_re, oprs_output, delimiter='\t', header='\n>>>>Original Prediction Accuracy', fmt='%s')
 np.savetxt(g_re, prs_output, delimiter='\t', header='\n>>>>Prediction Accuracy With Trained Weights', fmt='%s')
-#save_oprms() # no need to run it every time unless the original data(samples) are changed
+save_oprms() # no need to run it every time unless the original data(samples) are changed
 
 g_re.close()
 

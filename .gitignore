@@ -4,3 +4,5 @@ src/enwiki-latest*
 src/*.txt
 src/pages*
 src/*.pyc
+schnabel*/
+src/tflearn

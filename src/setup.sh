@@ -6,8 +6,10 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
+#python-dev 
+
 if [ $? -eq 0 ]; then
-	sudo apt-get install python-pip python-dev python-numpy python-scipy python-matplotlib software-properties-common zlib1g-dev
+	sudo apt-get install python-pip python-numpy python-scipy python-matplotlib software-properties-common zlib1g-dev
 	if [ $? -eq 0 ]; then
 		sudo pip install -U scikit-learn	
 		if [ $? -eq 0 ]; then
